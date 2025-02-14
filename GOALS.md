@@ -40,3 +40,6 @@ This should be very easy to setup due to DirectX having quick call for it, from 
 
 ## Gamma fix
 A fix for the gamma. Currently MC Xbox One on PC can't use gamma due to it originally being tied to Xbox One's display drivers. The goal is to make a recreation of the gamma system that does not rely on the display drivers and instead shaders.
+
+## Performance improvements
+Theoretical performance improvements. May not need too many.
