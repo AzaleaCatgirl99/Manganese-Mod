@@ -1,4 +1,5 @@
 # List of current goals for 1.0
+These are a list of goals for a full 1.0 release of Manganese. All of this is subject to change during development.
 
 ## 544p, 720p, 1440p, and 4K resolution support
 544p and 720p UIs can likely be modified from other LCE versions, whereas 1440p can use a doubled-720p and 4K can be recreated from the ground up.
@@ -15,8 +16,8 @@ Things like better quality grass, in-hand lighting, etc.
 ## JE graphics features
 Things like disable smooth lighting, disable leaves culling, block rotations, fov, etc.
 
-## PCK texture pack improvements
-Allowing for blocks to be defined outside of the terrain.png, allowing for items to be defined outside of the items.png, blockstates and models equivelent to JE, injecting textures/assets into already installed DLC (for modders), allowing for UI textures and other FUI features to be defined outside of FUIs, etc.
+## PCK improvements
+Allowing for blocks to be defined outside of the terrain.png, allowing for items to be defined outside of the items.png, blockstates and models equivelent to JE, injecting textures/assets into already installed DLC (for modders), allowing for UI textures and other FUI features to be defined outside of FUIs, multiple worlds for mash-ups, optional pack version data, PCK format version for detecting what packs are compatible with what mod ver. (if blank, uses vanilla method), etc.
 
 ## Optional patches for artificial rendering limitations
 These patches will come as disabled-by-default options for disabling some performance features 4J added. One notable feature is x32+ item rendering, which does not exist in LCE currently and instead uses the mipped item textures.
