@@ -1,3 +1,3 @@
 [submodule "Detours"]
 	path = Detours
-	url = https://github.com/WinDurango/Detours/
+	url = https://github.com/WinDurango/Detours.git
