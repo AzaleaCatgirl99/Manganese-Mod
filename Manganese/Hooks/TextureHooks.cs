@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using Durangling;
 using Minecraft.Client.Renderer.Texture;
-using static Manganese.Utils.TextureUtils;
+using static Manganese.Utils.TextureUtil;
 
 namespace Manganese.Hooks;
 

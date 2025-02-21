@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Minecraft.Client.Renderer.Texture;
+﻿namespace Manganese.Utils;
 
-namespace Manganese.Utils;
-
-public static class TextureUtils
+public static class TextureUtil
 {
     /**
      * Creates Java Edition styled color blending using two input packed colors

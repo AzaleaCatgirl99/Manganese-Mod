@@ -42,6 +42,19 @@ internal static class Addresses
 
     public static class LeafBlock
     {
-        public const long SetFancy = 0x1403bc360;
+        public const long IsSolidRender = 0x1403bc360;
+        public const long ShouldRenderFace = 0x1403fac50;
+        public const long SetFancy = 0x1403f7550;
+
+        // List of unknown functions
+
+        //public const long B = 0x1403afbf0;
+        //public const long B = 0x140169d90;
+        //public const long A = 0x14017ae60;
+        //public const long A = 0x140186fb0;
+        //public const long A = 0x1401771b0;
+        //public const long A = 0x1401874e0;
+        //public const long A = 0x140142b70;
+        //public const long A = 0x140171690;
     }
 }
