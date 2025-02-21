@@ -46,7 +46,7 @@ public static unsafe class RendererHooks
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvThiscall)])]
     private static void SetLightStateUniversalHook(Renderer.Native* self, bool value)
     {
-        ((SetLightStateUniversal)TrueSetLightStateUniversal)(self, false);
+        ((SetLightStateUniversal)TrueSetLightStateUniversal)(self, value);
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvThiscall)])]
@@ -64,6 +64,6 @@ public static unsafe class RendererHooks
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvThiscall)])]
     private static int QHook(Renderer.Native* handle, int q)
     {
-        return ((Q)TrueQ)(handle, 0);
+        return ((Q)TrueQ)(handle, q);
     }
 }
