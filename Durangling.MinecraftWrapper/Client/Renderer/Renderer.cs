@@ -10,9 +10,29 @@ namespace Minecraft.Client.Renderer;
 
 public unsafe class Renderer(Renderer.Native* handle) : NativeClassWrapper<Renderer.Native>(handle)
 {
-    public void StateSetFogEnabled(Renderer.Native* handle, bool useFog)
+    public void SetFogStateUniversal(Renderer.Native* self, bool value)
     {
-        NativeMethods.StateSetFogEnable(handle, useFog);
+        NativeMethods.SetFogStateUniversal(self, value);
+    }
+
+    public void SetLightStateUniversal(Renderer.Native* self, bool useLight)
+    {
+        NativeMethods.SetLightStateUniversal(self, useLight);
+    }
+
+    public void SetMipmapStateUniversal(Renderer.Native* self, bool value)
+    {
+        NativeMethods.SetMipmapStateUniversal(self, value);
+    }
+
+    public void SomethingWithBanners(Renderer.Native* self, int i)
+    {
+        NativeMethods.SomethingWithBanners(self, i);
+    }
+
+    public int Q(Renderer.Native* self, int q)
+    {
+        return NativeMethods.Q(self, q);
     }
 
     [StructLayout(LayoutKind.Explicit, Pack = 0x1, Size = 0x117)]
@@ -23,11 +43,19 @@ public unsafe class Renderer(Renderer.Native* handle) : NativeClassWrapper<Rende
 
     public static class NativeMethods
     {
-        public static readonly delegate* unmanaged[Thiscall]<Native*, bool, void> StateSetFogEnable;
+        public static readonly delegate* unmanaged[Thiscall]<Native*, bool, void> SetFogStateUniversal;
+        public static readonly delegate* unmanaged[Thiscall]<Native*, bool, void> SetLightStateUniversal;
+        public static readonly delegate* unmanaged[Thiscall]<Native*, bool, void> SetMipmapStateUniversal;
+        public static readonly delegate* unmanaged[Thiscall]<Native*, int, void> SomethingWithBanners;
+        public static readonly delegate* unmanaged[Thiscall]<Native*, int, int> Q;
 
         static NativeMethods()
         {
-            StateSetFogEnable = (delegate* unmanaged[Thiscall]<Native*, bool, void>)HandleHelper.GetProcessHandle(Addresses.Renderer.StateSetFogEnable);
+            SetFogStateUniversal = (delegate* unmanaged[Thiscall]<Native*, bool, void>)HandleHelper.GetProcessHandle(Addresses.Renderer.StateSetFogEnable);
+            SetLightStateUniversal = (delegate* unmanaged[Thiscall]<Native*, bool, void>)HandleHelper.GetProcessHandle(Addresses.Renderer.StateSetLightEnable);
+            SetMipmapStateUniversal = (delegate* unmanaged[Thiscall]<Native*, bool, void>)HandleHelper.GetProcessHandle(Addresses.Renderer.SetMipmapStateUniversal);
+            SomethingWithBanners = (delegate* unmanaged[Thiscall]<Native*, int, void>)HandleHelper.GetProcessHandle(Addresses.Renderer.SomethingWithBanners);
+            Q = (delegate* unmanaged[Thiscall]<Native*, int, int>)HandleHelper.GetProcessHandle(Addresses.Renderer.Q);
         }
     }
 }

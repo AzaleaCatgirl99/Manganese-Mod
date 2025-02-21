@@ -14,13 +14,13 @@ public class Manganese : Mod
     {
         TextureHooks.Attach();
         RendererHooks.Attach();
-        BlockHooks.Attach();
+        LeafBlockHooks.Attach();
     }
 
     protected override void DetachHooks()
     {
         TextureHooks.Detach();
         RendererHooks.Detach();
-        BlockHooks.Detach();
+        LeafBlockHooks.Detach();
     }
 }

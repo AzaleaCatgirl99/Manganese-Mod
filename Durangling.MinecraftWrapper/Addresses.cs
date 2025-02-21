@@ -34,5 +34,14 @@ internal static class Addresses
     public static class Renderer
     {
         public const long StateSetFogEnable = 0x1400eaff0;
+        public const long StateSetLightEnable = 0x1400eb290;
+        public const long SetMipmapStateUniversal = 0x1400ec440;
+        public const long SomethingWithBanners = 0x1400eb630;
+        public const long Q = 0x140092990; // TODO Figure out what this does
+    }
+
+    public static class LeafBlock
+    {
+        public const long SetFancy = 0x1403bc360;
     }
 }
