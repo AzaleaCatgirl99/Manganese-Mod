@@ -35,6 +35,21 @@ public unsafe class Renderer(Renderer.Native* handle) : NativeClassWrapper<Rende
         return NativeMethods.Q(self, q);
     }
 
+    public void C(Renderer.Native* self, bool value)
+    {
+        NativeMethods.C(self, value);
+    }
+
+    public void X(Renderer.Native* self, byte value)
+    {
+        NativeMethods.X(self, value);
+    }
+
+    public void V(Renderer.Native* self, byte a, byte b)
+    {
+        NativeMethods.V(self, a, b);
+    }
+
     [StructLayout(LayoutKind.Explicit, Pack = 0x1, Size = 0x117)]
     public struct Native
     {
@@ -48,6 +63,9 @@ public unsafe class Renderer(Renderer.Native* handle) : NativeClassWrapper<Rende
         public static readonly delegate* unmanaged[Thiscall]<Native*, bool, void> SetMipmapStateUniversal;
         public static readonly delegate* unmanaged[Thiscall]<Native*, int, void> SomethingWithBanners;
         public static readonly delegate* unmanaged[Thiscall]<Native*, int, int> Q;
+        public static readonly delegate* unmanaged[Thiscall]<Native*, bool, void> C;
+        public static readonly delegate* unmanaged[Thiscall]<Native*, byte, void> X;
+        public static readonly delegate* unmanaged[Thiscall]<Native*, byte, byte, void> V;
 
         static NativeMethods()
         {
@@ -56,6 +74,9 @@ public unsafe class Renderer(Renderer.Native* handle) : NativeClassWrapper<Rende
             SetMipmapStateUniversal = (delegate* unmanaged[Thiscall]<Native*, bool, void>)HandleHelper.GetProcessHandle(Addresses.Renderer.SetMipmapStateUniversal);
             SomethingWithBanners = (delegate* unmanaged[Thiscall]<Native*, int, void>)HandleHelper.GetProcessHandle(Addresses.Renderer.SomethingWithBanners);
             Q = (delegate* unmanaged[Thiscall]<Native*, int, int>)HandleHelper.GetProcessHandle(Addresses.Renderer.Q);
+            C = (delegate* unmanaged[Thiscall]<Native*, bool, void>)HandleHelper.GetProcessHandle(Addresses.Renderer.C);
+            X = (delegate* unmanaged[Thiscall]<Native*, byte, void>)HandleHelper.GetProcessHandle(Addresses.Renderer.X);
+            V = (delegate* unmanaged[Thiscall]<Native*, byte, byte, void>)HandleHelper.GetProcessHandle(Addresses.Renderer.V);
         }
     }
 }

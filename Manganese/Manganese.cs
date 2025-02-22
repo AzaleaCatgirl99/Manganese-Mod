@@ -15,6 +15,8 @@ public class Manganese : Mod
         TextureHooks.Attach();
         RendererHooks.Attach();
         LeafBlockHooks.Attach();
+        //LevelRendererHooks.Attach();
+        //ServerLevelHooks.Attach();
     }
 
     protected override void DetachHooks()
@@ -22,5 +24,7 @@ public class Manganese : Mod
         TextureHooks.Detach();
         RendererHooks.Detach();
         LeafBlockHooks.Detach();
+        //LevelRendererHooks.Detach();
+        //ServerLevelHooks.Detach();
     }
 }

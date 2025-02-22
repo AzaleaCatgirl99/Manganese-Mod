@@ -38,6 +38,12 @@ internal static class Addresses
         public const long SetMipmapStateUniversal = 0x1400ec440;
         public const long SomethingWithBanners = 0x1400eb630;
         public const long Q = 0x140092990; // TODO Figure out what this does
+
+        public const long C = 0x1400eb020;
+        //public const long X = 0x1400eadf0;
+        //public const long X = 0x1400eabc0;
+        public const long X = 0x1400eab10;
+        public const long V = 0x1400ea890;
     }
 
     public static class LeafBlock
@@ -56,5 +62,22 @@ internal static class Addresses
         //public const long A = 0x1401874e0;
         //public const long A = 0x140142b70;
         //public const long A = 0x140171690;
+    }
+
+    public static class LevelRenderer
+    {
+        public const long Z = 0x1408a2cf0;
+        public const long H = 0x1408897a0;
+        public const long F = 0x14089a050;
+        public const long S = 0x14087f390;
+
+        public const long GetViewDistance = 0x1400f6490;
+    }
+
+    public static class ServerLevel
+    {
+        public const long Constructor = 0x14090e0e0;
+        //public const long GetViewDistance = 0x1400f6490;
+        public const long GetViewDistance = 0x14090e48c;
     }
 }
