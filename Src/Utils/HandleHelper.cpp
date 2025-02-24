@@ -6,7 +6,7 @@ void* GetProcessHandle(uintptr_t address)
     return (void*)((char*)GetModuleHandle(nullptr) + (address - 0x140000000));
 }
 
-uint8_t GetProcessHandleAddress(uint8_t address)
+uintptr_t GetProcessHandleAddress(uintptr_t address)
 {
-    return ((uint8_t)GetModuleHandle(nullptr) + (address - 0x140000000));
+    return ((uintptr_t)GetModuleHandle(nullptr) + (address - 0x140000000));
 }

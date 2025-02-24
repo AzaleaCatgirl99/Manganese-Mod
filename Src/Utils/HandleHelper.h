@@ -4,6 +4,6 @@
 
 void* GetProcessHandle(uintptr_t address);
 
-uint8_t GetProcessHandleAddress(uint8_t address);
+uintptr_t GetProcessHandleAddress(uintptr_t address);
 
 #endif#pragma once

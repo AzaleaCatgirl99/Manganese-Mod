@@ -1,22 +1,21 @@
 #include "LevelRendererHooks.h"
 #include "DefaultHooks.h"
 
-SafetyHookInline g_AllChanged_hook{};
+SafetyHookMid g_AllChanged_ViewDistance_hook{};
 
-void* TrueAllChanged = GetProcessHandle(0x14087cd10);
+uintptr_t TrueAllChanged_ViewDistance = GetProcessHandleAddress(0x14087ce4b);
 
-void AllChangedHook(long* _this, int a)
+void AllChanged_ViewDistanceHook(SafetyHookContext& ctx)
 {
-	*(uint64_t*)(_this + 284) = 10;
-	g_AllChanged_hook.call(_this, a);
+    ctx.r8 = 20;
 }
 
 void AttachLevelRendererHooks()
 {
-	g_AllChanged_hook = safetyhook::create_inline(TrueAllChanged, AllChangedHook);
+    g_AllChanged_ViewDistance_hook = safetyhook::create_mid(TrueAllChanged_ViewDistance, AllChanged_ViewDistanceHook);
 }
 
 void DetachLevelRendererHooks()
 {
-	g_AllChanged_hook.reset();
+	g_AllChanged_ViewDistance_hook.reset();
 }
