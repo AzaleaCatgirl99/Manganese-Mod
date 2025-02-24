@@ -44,7 +44,7 @@ void Write(Level level, std::string caller, std::string message)
         break;
     }
 
-    std::string formatted = std::format("[{}] [{}] [{}]: {}", caller, levelName, time, message);
+    std::string formatted = std::format("{}[{}] [{}] [{}]: {}", color, caller, levelName, time, message);
 
     std::cout << formatted << std::endl;
 }

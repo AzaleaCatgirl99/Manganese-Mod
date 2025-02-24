@@ -5,6 +5,8 @@ void AttachHooks()
     AttachLeafBlockHooks();
     AttachRendererHooks();
     AttachTextureHooks();
+    AttachServerLevelHooks();
+    AttachLevelRendererHooks();
 }
 
 void DetachHooks()
@@ -12,4 +14,6 @@ void DetachHooks()
     DetachLeafBlockHooks();
     DetachRendererHooks();
     DetachTextureHooks();
+    DetachServerLevelHooks();
+    DetachLevelRendererHooks();
 }
