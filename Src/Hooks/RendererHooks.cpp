@@ -1,5 +1,4 @@
 #include "RendererHooks.h"
-#include "DefaultHooks.h"
 
 SafetyHookInline g_StateSetFogEnable_hook{};
 SafetyHookInline g_StateSetLightEnable_hook{};

@@ -1,5 +1,4 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#pragma once
 #include <string>
 #include <iostream>
 
@@ -13,5 +12,3 @@ enum Level
 };
 
 void Write(Level level, std::string caller, std::string message);
-
-#endif

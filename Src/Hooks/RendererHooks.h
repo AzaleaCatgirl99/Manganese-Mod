@@ -1,8 +1,6 @@
-#ifndef RENDERERHOOKS_H
-#define RENDERERHOOKS_H
+#pragma once
+#include "DefaultHooks.h"
 
 void AttachRendererHooks();
 
 void DetachRendererHooks();
-
-#endif

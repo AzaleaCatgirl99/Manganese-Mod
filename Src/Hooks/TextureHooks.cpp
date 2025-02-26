@@ -1,6 +1,4 @@
 #include "TextureHooks.h"
-#include "DefaultHooks.h"
-#include "../Utils/TextureHelper.h"
 
 SafetyHookInline g_CrispBlend_hook{};
 

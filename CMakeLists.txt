@@ -1,12 +1,12 @@
+include(FetchContent)
+
 cmake_minimum_required(VERSION 3.8.2)
 project(Manganese)
 set (CMAKE_CXX_STANDARD 23)
 
 set(SRC_FILES
-	dllmain.cpp
-	framework.h 
-	pch.cpp 
-	pch.h
+	Src/Manganese.cpp
+	Src/Framework.h 
 
 	Src/Hooks.cpp 
 	Src/Hooks.h 
@@ -30,9 +30,9 @@ set(SRC_FILES
 	Src/Utils/Logger.h 
 	Src/Utils/TextureHelper.cpp 
 	Src/Utils/TextureHelper.h 
+	 
+	Src/Utils/MemoryHandler.h
 )
-
-include(FetchContent)
 
 # Safetyhook
 FetchContent_Declare(
@@ -42,8 +42,6 @@ safetyhook
 )
 
 FetchContent_MakeAvailable(safetyhook)
-
-
 
 add_library(Manganese SHARED ${SRC_FILES})
 

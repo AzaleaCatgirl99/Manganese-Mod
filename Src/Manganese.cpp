@@ -1,8 +1,8 @@
-#include "pch.h"
+#include "Framework.h"
 #include <iostream>
 #include <Psapi.h>
-#include "Src/Hooks.h"
-#include "Src/Utils/Logger.h"
+#include "Hooks.h"
+#include "Utils/Logger.h"
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {

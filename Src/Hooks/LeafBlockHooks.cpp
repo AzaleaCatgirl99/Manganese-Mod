@@ -1,5 +1,4 @@
 #include "LeafBlockHooks.h"
-#include "DefaultHooks.h"
 
 SafetyHookInline g_isSolidRender_hook{};
 SafetyHookInline g_shouldRenderFace_hook{};
