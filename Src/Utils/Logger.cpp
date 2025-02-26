@@ -5,14 +5,6 @@
 void Write(Level level, std::string caller, std::string message)
 {
     std::string color;
-    /*auto start = std::chrono::system_clock::now();
-
-    auto currentTime = std::chrono::system_clock::to_time_t(start);
-    tm* tm1 = std::localtime(&currentTime);
-    char* tmBuff = std:asctime_s(localtime(&currentTime));
-    char timeFormat[] = "hh:mm:ss";
-    std::size_t time = std::strftime(tmBuff, (long long) sizeof(tmBuff), (char*) timeFormat, tm1);*/
-
     std::string time = "not implemented";
     std::string levelName;
     
@@ -44,7 +36,7 @@ void Write(Level level, std::string caller, std::string message)
         break;
     }
 
-    std::string formatted = std::format("{}[{}] [{}] [{}]: {}", color, caller, levelName, time, message);
+    std::string formatted = std::format("[{}] [{}] [{}]: {}", caller, levelName, time, message);
 
-    std::cout << formatted << std::endl;
+    std::cout << color << formatted << std::endl;
 }
