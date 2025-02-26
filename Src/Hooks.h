@@ -6,6 +6,7 @@
 #include "Hooks/TextureHooks.h"
 #include "Hooks/ServerLevelHooks.h"
 #include "Hooks/LevelRendererHooks.h"
+#include "Hooks/UIScene_SettingsListMenuHooks.h"
 
 void AttachHooks();
 
