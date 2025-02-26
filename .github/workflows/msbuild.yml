@@ -7,9 +7,9 @@ name: MSBuild
 
 on:
   push:
-    branches: [ "cpp-rework" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "cpp-rework" ]
+    branches: [ "main" ]
 
 env:
   # Path to the solution file relative to the root of the project.
@@ -42,3 +42,9 @@ jobs:
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
+
+    - name: Upload Artifacts
+      with:
+        name: Manganese
+        path: |
+           D:\a\Permdog99\Manganese\x64\Release\*.dll
