@@ -145,16 +145,12 @@
     <ClInclude Include="Libraries\SafetyHook\safetyhook.hpp" />
     <ClInclude Include="Libraries\SafetyHook\Zydis.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Src\Config.h" />
-    <ClInclude Include="Src\Config\Config.h" />
-    <ClInclude Include="Src\Config\Option.h" />
     <ClInclude Include="Src\Hooks.h" />
     <ClInclude Include="Src\Hooks\LeafBlockHooks.h" />
     <ClInclude Include="Src\Hooks\RendererHooks.h" />
     <ClInclude Include="Src\Hooks\ServerLevelHooks.h" />
     <ClInclude Include="Src\Hooks\TextureHooks.h" />
     <ClInclude Include="Src\Hooks\UIScene_SettingsListMenuHooks.h" />
-    <ClInclude Include="Src\toml.h" />
     <ClInclude Include="Src\Utils\HandleHelper.h" />
     <ClInclude Include="Src\Hooks\DefaultHooks.h" />
     <ClInclude Include="Src\Hooks\LevelRendererHooks.h" />
@@ -171,9 +167,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Src\Config.cpp" />
-    <ClCompile Include="Src\Config\Config.cpp" />
-    <ClCompile Include="Src\Config\Option.cpp" />
     <ClCompile Include="Src\Hooks.cpp" />
     <ClCompile Include="Src\Hooks\LeafBlockHooks.cpp" />
     <ClCompile Include="Src\Hooks\RendererHooks.cpp" />
