@@ -1,5 +1,5 @@
 #include "HandleHelper.h"
-#include "../../pch.h"
+#include "../Framework.h"
 
 void* GetProcessHandle(uintptr_t address)
 {

@@ -1,5 +1,4 @@
-#ifndef HOOKS_H
-#define HOOKS_H
+#pragma once
 
 #include "Hooks/LeafBlockHooks.h"
 #include "Hooks/RendererHooks.h"
@@ -11,5 +10,3 @@
 void AttachHooks();
 
 void DetachHooks();
-
-#endif

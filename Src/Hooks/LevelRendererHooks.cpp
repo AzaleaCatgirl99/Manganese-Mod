@@ -1,5 +1,4 @@
 #include "LevelRendererHooks.h"
-#include "DefaultHooks.h"
 
 SafetyHookMid g_AllChanged_ViewDistance_hook{};
 

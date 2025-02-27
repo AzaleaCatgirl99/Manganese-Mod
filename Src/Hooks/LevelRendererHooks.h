@@ -1,8 +1,6 @@
-#ifndef LEVELRENDERERHOOKS_H
-#define LEVELRENDERERHOOKS_H
+#pragma once
+#include "DefaultHooks.h"
 
 void AttachLevelRendererHooks();
 
 void DetachLevelRendererHooks();
-
-#endif

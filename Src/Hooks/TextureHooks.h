@@ -1,8 +1,7 @@
-#ifndef TEXTUREHOOKS_H
-#define TEXTUREHOOKS_H
+#pragma once
+#include "DefaultHooks.h"
+#include "../Utils/TextureHelper.h"
 
 void AttachTextureHooks();
 
 void DetachTextureHooks();
-
-#endif

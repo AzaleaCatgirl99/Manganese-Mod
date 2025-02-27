@@ -1,5 +1,4 @@
 #include "UIScene_SettingsListMenuHooks.h"
-#include "DefaultHooks.h"
 
 SafetyHookInline g_Init_hook{};
 SafetyHookInline g_HandleSliderElementMove_hook{};
@@ -17,7 +16,7 @@ void* TrueAddNewSlider = GetProcessHandle(0x14069f400);
 void InitHook(void* _this)
 {
 
-	static auto func = reinterpret_cast<void(*)(void*, const std::wstring&, char, char, char, char, char, char, char)>(GetProcessHandle(0x14069F400));
+	/*static auto func = reinterpret_cast<void(*)(void*, const std::wstring&, char, char, char, char, char, char, char)>(GetProcessHandle(0x14069F400));*/
 	
 	/*typedef int func(void*, const std::wstring&, int, int, int, int, int, int, int);
 	func* f = (func*)GetProcessHandle(0x14069F400);*/
@@ -27,16 +26,22 @@ void InitHook(void* _this)
 	/*((void(*)(uintptr_t, const std::wstring &, int, int, int, int, bool, int, int))GetProcessHandleAddress(0x14069F400))(*(uintptr_t*)(_this + 328), L"Render Distance: %i", 99, 2, 32, 18, true, 7, 3);*/
 
 	/*AddNewSliderHook(_this + 328, L"Render Distance: %i", 99, 2, 32, 18, true, 7, 3);*/
+
+	if (!*(uint64_t*)(& _this + 0x718)) {
+		Call<void, uintptr_t, const std::wstring&, int, int, int, int, bool, int, int>(GetProcessHandleAddress(0x14069F400), *(uintptr_t*)(&_this + 0x148), L"Render Distance: %i", 99, 2, 32, 18, true, 7, 3);
+	}
+	
 	g_Init_hook.call(_this);
 	
 }
 
 void HandleSliderElementMoveHook(void* _this, int a, int b, int c)
 {
-	if (b == 99) {
-
+	if (b != 99) {
+		g_HandleSliderElementMove_hook.call(_this, a, b, c);
 	}
-	g_HandleSliderElementMove_hook.call(_this, a, b, c);
+	
+	Call<void, uintptr_t, const std::wstring&, int, int, int, int, bool, int, int>(GetProcessHandleAddress(0x14069F400), *(uintptr_t*)(&_this), L"Render Distance: %i", 99, 2, 32, c & 255, true, 7, 3);
 }
 
 

@@ -1,8 +1,6 @@
-#ifndef SERVERLEVELHOOKS_H
-#define SERVERLEVELHOOKS_H
+#pragma once
+#include "DefaultHooks.h"
 
 void AttachServerLevelHooks();
 
 void DetachServerLevelHooks();
-
-#endif

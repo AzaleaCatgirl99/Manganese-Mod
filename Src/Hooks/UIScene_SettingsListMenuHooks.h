@@ -1,8 +1,6 @@
-#ifndef UISCENE_SETTINGSLISTMENUHOOKS_H
-#define UISCENE_SETTINGSLISTMENUHOOKS_H
+#pragma once
+#include "DefaultHooks.h"
 
 void AttachUIScene_SettingsListMenuHooks();
 
 void DetachUIScene_SettingsListMenuHooks();
-
-#endif
