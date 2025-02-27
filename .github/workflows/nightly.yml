@@ -27,7 +27,7 @@ jobs:
       with:
         name: "Manganese-Nightly"
         path: |
-          D:\a\Manganese-Mod\Manganese-Mod\build\Main-Release\Manganese.dll
+          D:\a\Manganese-Mod\Manganese-Mod\build\Release\Manganese.dll
           D:\a\Manganese-Mod\Manganese-Mod\LICENSE.md
           D:\a\Manganese-Mod\Manganese-Mod\README.md
           D:\a\Manganese-Mod\Manganese-Mod\CREDITS.md
