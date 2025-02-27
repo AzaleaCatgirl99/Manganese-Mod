@@ -27,7 +27,7 @@ jobs:
       with:
         name: "Manganese-Nightly-${GITHUB_SHA::7}"
         path: |
-          D:\a\Permdog99\Manganese\out\build\x64-Release\Manganese.dll
-          D:\a\Permdog99\Manganese\LICENSE.md
-          D:\a\Permdog99\Manganese\README.md
-          D:\a\Permdog99\Manganese\CREDITS.md
+          D:\a\Manganese-Mod\Manganese-Mod\out\build\x64-Release\Manganese.dll
+          D:\a\Manganese-Mod\Manganese-Mod\LICENSE.md
+          D:\a\Manganese-Mod\Manganese-Mod\README.md
+          D:\a\Manganese-Mod\Manganese-Mod\CREDITS.md
