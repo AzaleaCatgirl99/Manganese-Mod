@@ -1,7 +1,7 @@
 ﻿{
     "configurations": [
         {
-            "name": "x64-Release",
+            "name": "Main-Release",
             "generator": "Ninja",
             "configurationType": "Release",
             "inheritEnvironments": [ "msvc_x64_x64" ],
