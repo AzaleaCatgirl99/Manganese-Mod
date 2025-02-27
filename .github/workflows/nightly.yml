@@ -16,12 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Create short commit SHA
-      id: vars
-      run: |
-          shortSha=$(git rev-parse --short ${{ github.sha }})
-          echo "COMMIT_SHORT_SHA=$shortSha" >> $GITHUB_ENV
-
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
@@ -31,7 +25,7 @@ jobs:
     - name: Upload Nightly
       uses: actions/upload-artifact@v4
       with:
-        name: "Manganese-Nightly-${{ env.COMMIT_SHORT_SHA }}"
+        name: "Manganese-Nightly-${GITHUB_SHA::7}"
         path: |
           D:\a\Permdog99\Manganese\out\build\x64-Release\Manganese.dll
           D:\a\Permdog99\Manganese\LICENSE.md
