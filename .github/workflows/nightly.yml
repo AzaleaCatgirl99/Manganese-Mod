@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 env:
-  BUILD_TYPE: Release
+  BUILD_TYPE: x64-Release
 
 jobs:
   build:
@@ -25,9 +25,9 @@ jobs:
     - name: Upload Nightly
       uses: actions/upload-artifact@v4
       with:
-        name: "Manganese-Nightly-${GITHUB_SHA::7}"
+        name: "Manganese-Nightly"
         path: |
-          D:\a\Manganese-Mod\Manganese-Mod\build\Release\Manganese.dll
+          D:\a\Manganese-Mod\Manganese-Mod\build\x64-Release\Manganese.dll
           D:\a\Manganese-Mod\Manganese-Mod\LICENSE.md
           D:\a\Manganese-Mod\Manganese-Mod\README.md
           D:\a\Manganese-Mod\Manganese-Mod\CREDITS.md
