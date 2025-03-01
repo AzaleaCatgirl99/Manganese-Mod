@@ -7,7 +7,8 @@ void AttachHooks()
     AttachTextureHooks();
     AttachServerLevelHooks();
     AttachLevelRendererHooks();
-    /*AttachUIScene_SettingsListMenuHooks();*/
+    AttachLevelHooks();
+    AttachUIScene_SettingsListMenuHooks();
 }
 
 void DetachHooks()
@@ -17,5 +18,6 @@ void DetachHooks()
     DetachTextureHooks();
     DetachServerLevelHooks();
     DetachLevelRendererHooks();
-    /*DetachUIScene_SettingsListMenuHooks();*/
+    DetachLevelHooks();
+    DetachUIScene_SettingsListMenuHooks();
 }

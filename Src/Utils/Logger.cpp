@@ -11,32 +11,32 @@ void Write(Level level, std::string caller, std::string message)
     switch (level)
     {
     case Debug:
-        color = "\43";
+        color = "43";
         levelName = "DEBUG";
         break;
     case Info:
-        color = "\104";
+        color = "104";
         levelName = "INFO";
         break;
     case Warning:
-        color = "\103";
+        color = "103";
         levelName = "WARNING";
         break;
     case Error:
-        color = "\101";
+        color = "101";
         levelName = "ERROR";
         break;
     case Fatal:
-        color = "\41";
+        color = "41";
         levelName = "FATAL";
         break;
     default:
-        color = "";
+        color = "0";
         levelName = "";
         break;
     }
 
-    std::string formatted = std::format("[{}] [{}] [{}]: {}", caller, levelName, time, message);
+    std::string formatted = std::format("[{}] [{}]: {}", caller, levelName, message);
 
-    std::cout << color << formatted << std::endl;
+    std::cout << "\033[" << color << "m" << formatted << std::endl;
 }

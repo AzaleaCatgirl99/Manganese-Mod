@@ -20,11 +20,14 @@ void* TrueC = GetProcessHandle(0x1400eb020);
 void* TrueX = GetProcessHandle(0x1400eab10);
 void* TrueV = GetProcessHandle(0x1400ea890);
 
-
-
-void StateSetFogEnableHook(long* _this, bool* value)
+void StateSetFogEnableHook(long* _this, bool value)
 {
-    g_StateSetFogEnable_hook.call(_this, false);
+    if (FogMode::get() == 0) {
+        g_StateSetFogEnable_hook.call(_this, false);
+    }
+    else {
+        g_StateSetFogEnable_hook.call(_this, value);
+    }
 }
 
 void StateSetLightEnableHook(long* _this, bool* value)
@@ -32,9 +35,9 @@ void StateSetLightEnableHook(long* _this, bool* value)
     g_StateSetLightEnable_hook.call(_this, value);
 }
 
-void StateSetMipmapEnableHook(long* _this, bool* value)
+void StateSetMipmapEnableHook(long* _this, bool value)
 {
-    g_StateSetMipmapEnable_hook.call(_this, false);
+    /*g_StateSetMipmapEnable_hook.call(_this, false);*/
 }
 
 void SomethingWithBannersHook(long* _this, int* value)
@@ -44,12 +47,17 @@ void SomethingWithBannersHook(long* _this, int* value)
 
 int QHook(long* _this, int* q)
 {
-    return 1;
+    return g_Q_hook.call<int>(_this, 1);
 }
 
-void CHook(long* _this, bool* value)
+void CHook(long* _this, bool value)
 {
-    g_C_hook.call(_this, false);
+    if (FogMode::get() == 0) {
+        g_C_hook.call(_this, false);
+    }
+    else {
+        g_C_hook.call(_this, value);
+    }
 }
 
 void XHook(long* _this, char* value)

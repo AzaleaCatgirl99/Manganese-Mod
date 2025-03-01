@@ -4,3 +4,5 @@
 void AttachServerLevelHooks();
 
 void DetachServerLevelHooks();
+
+void* getServerLevel_this();

@@ -10,3 +10,8 @@ uintptr_t GetProcessHandleAddress(uintptr_t address)
 {
     return ((uintptr_t)GetModuleHandle(nullptr) + (address - 0x140000000));
 }
+
+wchar_t* GetProcessHandleAddressWchar(uintptr_t address)
+{
+    return (wchar_t*)((char*)GetModuleHandle(nullptr) + (address - 0x140000000));
+}

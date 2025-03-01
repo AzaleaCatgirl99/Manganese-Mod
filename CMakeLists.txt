@@ -32,7 +32,10 @@ set(SRC_FILES
 	Src/Utils/TextureHelper.h 
 	 
 	Src/Utils/MemoryHandler.h
-)
+	Src/Options.cpp
+	Src/Options.h
+    Src/Hooks/LevelHooks.cpp 
+	Src/Hooks/LevelHooks.h)
 
 # Safetyhook
 FetchContent_Declare(

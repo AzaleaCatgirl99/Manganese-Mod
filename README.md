@@ -45,3 +45,4 @@ WIP
 ### 🎁 Special Thanks
 - Boreal for general assistance
 - Dexrn for help on REing and coding
+- Bagieta for general coding assistance

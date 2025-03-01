@@ -6,7 +6,12 @@ void* TrueCrispBlend = GetProcessHandle(0x140934550);
 
 int CrispBlendHook(int* one, int* two)
 {
-    return JavaBlend(JavaBlend((int)one, (int)two), JavaBlend((int)two, (int)one));
+    if (MipmapType::get() == 2) {
+        return JavaBlend(JavaBlend((int)one, (int)two), JavaBlend((int)two, (int)one));
+    }
+    else {
+        return g_CrispBlend_hook.call<int>(one, two);
+    }
 }
 
 void AttachTextureHooks()

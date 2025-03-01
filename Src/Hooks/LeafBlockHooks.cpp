@@ -10,17 +10,34 @@ void* TrueSetFancy = GetProcessHandle(0x1403f7550);
 
 bool IsSolidRenderHook(long* _this)
 {
-    return true;
+    if (LeavesType::get() == 0) {
+        return true;
+    } else {
+        return g_isSolidRender_hook.call<bool>(_this);
+    }
 }
 
 bool ShouldRenderFaceHook(long* _this, long* a, long* b, long* c, long* d)
 {
-    return true;
+    if (LeavesType::get() == 0) {
+        return true;
+    }
+    else {
+        return g_shouldRenderFace_hook.call<bool>(_this, a, b, c, d);
+    }
 }
 
-void SetFancyHook(long* _this, char* value)
+void SetFancyHook(long* _this, bool value)
 {
-    g_setFancy_hook.call(_this, '\0');
+    if (LeavesType::get() == 0) {
+        g_setFancy_hook.call(_this, false);
+    }
+    else if (LeavesType::get() == 2) {
+        g_setFancy_hook.call(_this, true);
+    }
+    else {
+        g_setFancy_hook.call(_this, value);
+    }
 }
 
 void AttachLeafBlockHooks()
