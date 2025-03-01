@@ -2,7 +2,7 @@
 #include <chrono>
 #include <ctime>
 
-void Write(Level level, std::string caller, std::string message)
+void Write(LoggerLevel level, std::string caller, std::string message)
 {
     std::string color;
     std::string time = "not implemented";

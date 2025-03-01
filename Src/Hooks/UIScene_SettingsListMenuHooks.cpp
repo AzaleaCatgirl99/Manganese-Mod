@@ -3,6 +3,7 @@
 #include "LevelHooks.h"
 #include "ServerLevelHooks.h"
 #include "../Framework.h"
+#include "RendererHooks.h"
 
 SafetyHookInline g_Init_hook{};
 SafetyHookInline g_HandleSliderElementMove_hook{};
@@ -47,7 +48,6 @@ void HandleSliderElementMoveHook(uintptr_t _this, int a, int id, int value)
 
 		if (getLevelInstance() != nullptr) {
 			Call<void, uintptr_t>(GetProcessHandleAddress(0x14087d460), getAllChanged_this());
-			FlushInstructionCache(GetCurrentProcess(), getServerLevel_this(), sizeof(getServerLevel_this()));
 		}
 		break;
 	case 98:
@@ -62,6 +62,9 @@ void HandleSliderElementMoveHook(uintptr_t _this, int a, int id, int value)
 		MipmapType::set(value);
 		label = MipmapType::getLabel();
 		Write(Info, "Manganese", MipmapType::getLogLabel());
+
+		Renderer::StateSetMipmapEnable::Reset();
+		Renderer::StateSetMipmapEnable::Register();
 		break;
 	case 96:
 		FogMode::set(value);
@@ -82,13 +85,13 @@ void HandleSliderElementMoveHook(uintptr_t _this, int a, int id, int value)
 	g_HandleSliderElementMove_hook.call(_this, a, id, value);
 }
 
-void AttachUIScene_SettingsListMenuHooks()
+void UISceneSettingsListMenu::RegisterHooks()
 {
 	g_Init_hook = safetyhook::create_inline(TrueInit, InitHook);
 	g_HandleSliderElementMove_hook = safetyhook::create_inline(TrueHandleSliderElementMove, HandleSliderElementMoveHook);
 }
 
-void DetachUIScene_SettingsListMenuHooks()
+void UISceneSettingsListMenu::ResetHooks()
 {
 	g_Init_hook.reset();
 	g_HandleSliderElementMove_hook.reset();

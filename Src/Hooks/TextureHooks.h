@@ -2,6 +2,10 @@
 #include "DefaultHooks.h"
 #include "../Utils/TextureHelper.h"
 
-void AttachTextureHooks();
+class Texture
+{
+public:
+	static void RegisterHooks();
 
-void DetachTextureHooks();
+	static void ResetHooks();
+};

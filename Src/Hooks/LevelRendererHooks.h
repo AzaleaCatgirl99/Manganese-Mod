@@ -1,8 +1,12 @@
 #pragma once
 #include "DefaultHooks.h"
 
-void AttachLevelRendererHooks();
+class LevelRenderer
+{
+public:
+	static void RegisterHooks();
 
-void DetachLevelRendererHooks();
+	static void ResetHooks();
+};
 
 uintptr_t getAllChanged_this();

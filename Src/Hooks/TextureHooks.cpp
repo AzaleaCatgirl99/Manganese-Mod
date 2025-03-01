@@ -14,12 +14,12 @@ int CrispBlendHook(int* one, int* two)
     }
 }
 
-void AttachTextureHooks()
+void Texture::RegisterHooks()
 {
     g_CrispBlend_hook = safetyhook::create_inline(TrueCrispBlend, CrispBlendHook);
 }
 
-void DetachTextureHooks()
+void Texture::ResetHooks()
 {
     g_CrispBlend_hook.reset();
 }

@@ -20,25 +20,89 @@ void* TrueC = GetProcessHandle(0x1400eb020);
 void* TrueX = GetProcessHandle(0x1400eab10);
 void* TrueV = GetProcessHandle(0x1400ea890);
 
-void StateSetFogEnableHook(long* _this, bool value)
+void StateSetFogEnableHook(void* _this, bool value)
 {
     if (FogMode::get() == 0) {
-        g_StateSetFogEnable_hook.call(_this, false);
+        Renderer::StateSetFogEnable::Call(_this, false);
     }
     else {
-        g_StateSetFogEnable_hook.call(_this, value);
+        Renderer::StateSetFogEnable::Call(_this, value);
     }
 }
 
-void StateSetLightEnableHook(long* _this, bool* value)
+void Renderer::StateSetFogEnable::Call(void* _this, bool value)
+{
+    g_StateSetFogEnable_hook.call(_this, value);
+}
+
+void Renderer::StateSetFogEnable::Register()
+{
+    g_StateSetFogEnable_hook = safetyhook::create_inline(TrueStateSetFogEnable, StateSetFogEnableHook);
+}
+
+void Renderer::StateSetFogEnable::Reset()
+{
+    g_StateSetFogEnable_hook.reset();
+}
+
+void* Renderer::StateSetFogEnable::getTrue()
+{
+    return TrueStateSetFogEnable;
+}
+
+
+
+void StateSetLightEnableHook(void* _this, bool value)
+{
+    Renderer::StateSetLightEnable::Call(_this, value);
+}
+
+void Renderer::StateSetLightEnable::Call(void* _this, bool value)
 {
     g_StateSetLightEnable_hook.call(_this, value);
 }
 
-void StateSetMipmapEnableHook(long* _this, bool value)
+void Renderer::StateSetLightEnable::Register()
 {
-    /*g_StateSetMipmapEnable_hook.call(_this, false);*/
+    g_StateSetLightEnable_hook = safetyhook::create_inline(TrueStateSetLightEnable, StateSetLightEnableHook);
 }
+
+void Renderer::StateSetLightEnable::Reset()
+{
+    g_StateSetLightEnable_hook.reset();
+}
+
+void* Renderer::StateSetLightEnable::getTrue()
+{
+    return TrueStateSetLightEnable;
+}
+
+
+
+void StateSetMipmapEnableHook(void* _this, bool value)
+{
+    if (MipmapType::get() == 0) {
+        Renderer::StateSetMipmapEnable::Call(_this, false);
+    }
+}
+
+void Renderer::StateSetMipmapEnable::Call(void* _this, bool value)
+{
+    g_StateSetMipmapEnable_hook.call(_this, value);
+}
+
+void Renderer::StateSetMipmapEnable::Register()
+{
+    g_StateSetMipmapEnable_hook = safetyhook::create_inline(TrueStateSetMipmapEnable, StateSetMipmapEnableHook);
+}
+
+void Renderer::StateSetMipmapEnable::Reset()
+{
+    g_StateSetMipmapEnable_hook.reset();
+}
+
+
+
 
 void SomethingWithBannersHook(long* _this, int* value)
 {
@@ -70,11 +134,11 @@ void VHook(long* _this, char* a, char* b)
     g_V_hook.call(_this, a, b);
 }
 
-void AttachRendererHooks()
+void Renderer::RegisterHooks()
 {
-    g_StateSetFogEnable_hook = safetyhook::create_inline(TrueStateSetFogEnable, StateSetFogEnableHook);
-    g_StateSetLightEnable_hook = safetyhook::create_inline(TrueStateSetLightEnable, StateSetLightEnableHook);
-    g_StateSetMipmapEnable_hook = safetyhook::create_inline(TrueStateSetMipmapEnable, StateSetMipmapEnableHook);
+    Renderer::StateSetFogEnable::Register();
+    Renderer::StateSetLightEnable::Register();
+    Renderer::StateSetMipmapEnable::Register();
     g_SomethingWithBanners_hook = safetyhook::create_inline(TrueSomethingWithBanners, SomethingWithBannersHook);
     g_Q_hook = safetyhook::create_inline(TrueQ, QHook);
     g_C_hook = safetyhook::create_inline(TrueC, CHook);
@@ -82,11 +146,11 @@ void AttachRendererHooks()
     g_V_hook = safetyhook::create_inline(TrueV, VHook);
 }
 
-void DetachRendererHooks()
+void Renderer::ResetHooks()
 {
-    g_StateSetFogEnable_hook.reset();
-    g_StateSetLightEnable_hook.reset();
-    g_StateSetMipmapEnable_hook.reset();
+    Renderer::StateSetFogEnable::Reset();
+    Renderer::StateSetLightEnable::Reset();
+    Renderer::StateSetMipmapEnable::Reset();
     g_SomethingWithBanners_hook.reset();
     g_Q_hook.reset();
     g_C_hook.reset();

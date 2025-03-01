@@ -1,8 +1,12 @@
 #pragma once
 #include "DefaultHooks.h"
 
-void AttachLevelHooks();
+class Level
+{
+public:
+	static void RegisterHooks();
 
-void DetachLevelHooks();
+	static void ResetHooks();
+};
 
 void* getLevelInstance();

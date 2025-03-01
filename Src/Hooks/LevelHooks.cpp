@@ -13,12 +13,12 @@ void FUN_14039dc10Hook(void* _this, uintptr_t* a, int* b)
 	g_FUN_14039dc10_hook.call(_this, a, b);
 }
 
-void AttachLevelHooks()
+void Level::RegisterHooks()
 {
 	g_FUN_14039dc10_hook = safetyhook::create_inline(TrueFUN_14039dc10, FUN_14039dc10Hook);
 }
 
-void DetachLevelHooks()
+void Level::ResetHooks()
 {
 	g_FUN_14039dc10_hook.reset();
 	levelInstance = nullptr;

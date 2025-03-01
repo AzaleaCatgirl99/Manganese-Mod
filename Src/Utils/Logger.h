@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-enum Level
+enum LoggerLevel
 {
     Debug,
     Info,
@@ -11,4 +11,4 @@ enum Level
     Fatal
 };
 
-void Write(Level level, std::string caller, std::string message);
+void Write(LoggerLevel level, std::string caller, std::string message);

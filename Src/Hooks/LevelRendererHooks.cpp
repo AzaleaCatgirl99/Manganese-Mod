@@ -19,13 +19,13 @@ void AllChangedHook(uintptr_t _this)
 	g_AllChanged_hook.call(_this);
 }
 
-void AttachLevelRendererHooks()
+void LevelRenderer::RegisterHooks()
 {
     g_AllChanged_ViewDistance_hook = safetyhook::create_mid(TrueAllChanged_ViewDistance, AllChanged_ViewDistanceHook);
 	g_AllChanged_hook = safetyhook::create_inline(TrueAllChanged, AllChangedHook);
 }
 
-void DetachLevelRendererHooks()
+void LevelRenderer::ResetHooks()
 {
 	g_AllChanged_ViewDistance_hook.reset();
 	g_AllChanged_hook.reset();

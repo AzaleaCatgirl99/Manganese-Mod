@@ -1,6 +1,10 @@
 #pragma once
 #include "DefaultHooks.h"
 
-void AttachUIScene_SettingsListMenuHooks();
+class UISceneSettingsListMenu
+{
+public:
+	static void RegisterHooks();
 
-void DetachUIScene_SettingsListMenuHooks();
+	static void ResetHooks();
+};

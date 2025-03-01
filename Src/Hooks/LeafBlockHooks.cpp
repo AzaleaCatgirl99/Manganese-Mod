@@ -40,14 +40,14 @@ void SetFancyHook(long* _this, bool value)
     }
 }
 
-void AttachLeafBlockHooks()
+void LeafBlock::RegisterHooks()
 {
     g_isSolidRender_hook = safetyhook::create_inline(TrueIsSolidRender, IsSolidRenderHook);
     g_shouldRenderFace_hook = safetyhook::create_inline(TrueShouldRenderFace, ShouldRenderFaceHook);
     g_setFancy_hook = safetyhook::create_inline(TrueSetFancy, SetFancyHook);
 }
 
-void DetachLeafBlockHooks()
+void LeafBlock::ResetHooks()
 {
     g_isSolidRender_hook.reset();
     g_shouldRenderFace_hook.reset();

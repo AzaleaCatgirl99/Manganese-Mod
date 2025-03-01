@@ -8,6 +8,6 @@
 #include "Hooks/UIScene_SettingsListMenuHooks.h"
 #include "Hooks/ServerLevelHooks.h"
 
-void AttachHooks();
+void RegisterHooks();
 
-void DetachHooks();
+void ResetHooks();

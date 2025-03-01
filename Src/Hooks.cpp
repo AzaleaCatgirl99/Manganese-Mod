@@ -1,23 +1,23 @@
 #include "Hooks.h"
 
-void AttachHooks()
+void RegisterHooks()
 {
-    AttachLeafBlockHooks();
-    AttachRendererHooks();
-    AttachTextureHooks();
-    AttachServerLevelHooks();
-    AttachLevelRendererHooks();
-    AttachLevelHooks();
-    AttachUIScene_SettingsListMenuHooks();
+    LeafBlock::RegisterHooks();
+    Renderer::RegisterHooks();
+    Texture::RegisterHooks();
+    ServerLevel::RegisterHooks();
+    LevelRenderer::RegisterHooks();
+    Level::RegisterHooks();
+    UISceneSettingsListMenu::RegisterHooks();
 }
 
-void DetachHooks()
+void ResetHooks()
 {
-    DetachLeafBlockHooks();
-    DetachRendererHooks();
-    DetachTextureHooks();
-    DetachServerLevelHooks();
-    DetachLevelRendererHooks();
-    DetachLevelHooks();
-    DetachUIScene_SettingsListMenuHooks();
+    LeafBlock::ResetHooks();
+    Renderer::ResetHooks();
+    Texture::ResetHooks();
+    ServerLevel::ResetHooks();
+    LevelRenderer::ResetHooks();
+    Level::ResetHooks();
+    UISceneSettingsListMenu::ResetHooks();
 }

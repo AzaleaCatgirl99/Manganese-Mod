@@ -9,10 +9,10 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-        AttachHooks();
+        RegisterHooks();
         break;
     case DLL_PROCESS_DETACH:
-        DetachHooks();
+        ResetHooks();
         break;
     }
     return TRUE;

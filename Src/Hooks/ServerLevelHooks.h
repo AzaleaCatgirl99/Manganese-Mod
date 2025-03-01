@@ -1,8 +1,12 @@
 #pragma once
 #include "DefaultHooks.h"
 
-void AttachServerLevelHooks();
+class ServerLevel
+{
+public:
+	static void RegisterHooks();
 
-void DetachServerLevelHooks();
+	static void ResetHooks();
+};
 
 void* getServerLevel_this();

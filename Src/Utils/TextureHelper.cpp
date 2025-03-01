@@ -35,36 +35,3 @@ int JavaBlend(int one, int two)
 
     return red | alpha | green | blue;
 }
-
-/**
- * Creates vanila-styled color blending using two input packed colors
- */
-int SharpBlend(int colorOne, int colorTwo)
-{
-    int red;
-    int green;
-    int blue;
-
-    if ((colorOne >> 24) + (colorTwo >> 24) < 255)
-    {
-        red = (GetColorFraction(colorOne >> 16) + GetColorFraction(colorTwo >> 16)) / 2 << 16;
-        green = (GetColorFraction(colorOne >> 8) + GetColorFraction(colorTwo >> 8)) / 2 << 8;
-        blue = (GetColorFraction(colorOne) + GetColorFraction(colorTwo)) / 2;
-
-        return red | green | blue;
-    }
-    else if (colorTwo >> 24 < colorOne >> 24)
-    {
-        red = (GetColorFraction(colorOne >> 16) * 255 + GetColorFraction(colorTwo >> 16)) / 256 << 16;
-        green = (GetColorFraction(colorOne >> 8) * 255 + GetColorFraction(colorTwo >> 8)) / 256 << 8;
-        blue = (GetColorFraction(colorOne) * 255 + GetColorFraction(colorTwo)) / 256;
-    }
-    else
-    {
-        red = (GetColorFraction(colorOne >> 16) + GetColorFraction(colorTwo >> 16) * 255) / 256 << 16;
-        green = (GetColorFraction(colorOne >> 8) + GetColorFraction(colorTwo >> 8) * 255) / 256 << 8;
-        blue = (GetColorFraction(colorOne) + GetColorFraction(colorTwo) * 255) / 256;
-    }
-
-    return red | 0xff000000 | green | blue;
-}

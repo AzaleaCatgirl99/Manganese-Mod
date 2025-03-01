@@ -1,6 +1,10 @@
 #pragma once
 #include "DefaultHooks.h"
 
-void AttachLeafBlockHooks();
+class LeafBlock
+{
+public:
+	static void RegisterHooks();
 
-void DetachLeafBlockHooks();
+	static void ResetHooks();
+};

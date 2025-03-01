@@ -1,6 +1,48 @@
 #pragma once
 #include "DefaultHooks.h"
 
-void AttachRendererHooks();
+class Renderer
+{
+public:
 
-void DetachRendererHooks();
+	class StateSetFogEnable
+	{
+	public:
+		static void* getTrue();
+
+		static void Call(void* _this, bool value);
+
+		static void Register();
+
+		static void Reset();
+	};
+
+	class StateSetLightEnable
+	{
+	public:
+		static void* getTrue();
+
+		static void Call(void* _this, bool value);
+
+		static void Register();
+
+		static void Reset();
+	};
+
+	class StateSetMipmapEnable
+	{
+	public:
+		static void* getTrue();
+
+		static void Call(void* _this, bool value);
+
+		static void Register();
+
+		static void Reset();
+	};
+
+
+	static void RegisterHooks();
+
+	static void ResetHooks();
+};
