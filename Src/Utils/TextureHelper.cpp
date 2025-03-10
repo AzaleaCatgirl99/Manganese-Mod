@@ -9,8 +9,8 @@ int GetColorFraction(int value)
 }
 
 /**
-     * Creates Java Edition styled color blending using two input packed colors
-     */
+* Creates Java Edition styled color blending using two input packed colors
+*/
 int JavaBlend(int one, int two)
 {
     int red;

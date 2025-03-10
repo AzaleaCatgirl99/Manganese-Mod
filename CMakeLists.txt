@@ -2,40 +2,58 @@ include(FetchContent)
 
 cmake_minimum_required(VERSION 3.8.2)
 project(Manganese)
-set (CMAKE_CXX_STANDARD 23)
+set (CMAKE_CXX_STANDARD 20)
 
 set(SRC_FILES
-	Src/Manganese.cpp
-	Src/Framework.h 
+	resource.h 
+	Resource.rc
 
-	Src/Hooks.cpp 
-	Src/Hooks.h 
-	Src/Hooks/DefaultHooks.h 
-	Src/Hooks/LeafBlockHooks.cpp 
-	Src/Hooks/LeafBlockHooks.h 
-	Src/Hooks/LevelRendererHooks.cpp
-	Src/Hooks/LevelRendererHooks.h
-	Src/Hooks/RendererHooks.cpp
-	Src/Hooks/RendererHooks.h
-	Src/Hooks/ServerLevelHooks.cpp
-	Src/Hooks/ServerLevelHooks.h
-	Src/Hooks/TextureHooks.cpp
-	Src/Hooks/TextureHooks.h
-	Src/Hooks/UIScene_SettingsListMenuHooks.cpp
-	Src/Hooks/UIScene_SettingsListMenuHooks.h 
+	Src/Manganese.cpp
+	Src/Manganese.h
+	Src/Framework.h 
+	Src/Mod.cpp 
+	Src/Mod.h
+
+	Src/Hooks/HookIncludes.h
+
+	Src/Hooks/Hooks.cpp
+	Src/Hooks/Hooks.h
+	Src/Hooks/Minecraft/World/Blocks/LeafBlock.cpp
+	Src/Hooks/Minecraft/World/Blocks/LeafBlock.h
+	Src/Hooks/Minecraft/Client/Renderer/LevelRenderer.cpp
+	Src/Hooks/Minecraft/Client/Renderer/LevelRenderer.h
+	Src/Hooks/Minecraft/Client/Renderer/Renderer.cpp
+	Src/Hooks/Minecraft/Client/Renderer/Renderer.h
+	Src/Hooks/Minecraft/Server/ServerLevel.cpp
+	Src/Hooks/Minecraft/Server/ServerLevel.h
+	Src/Hooks/Minecraft/Client/Renderer/Texture/Texture.cpp
+	Src/Hooks/Minecraft/Client/Renderer/Texture/Texture.h
+	Src/Hooks/Minecraft/Client/UI/Scene/UIScene_SettingsListMenu.cpp
+	Src/Hooks/Minecraft/Client/UI/Scene/UIScene_SettingsListMenu.h
+
+	Src/Hooks/Minecraft/Client/Renderer/BlockRenderer.cpp 
+	Src/Hooks/Minecraft/Client/Renderer/BlockRenderer.h 
+
+	Src/Hooks/Minecraft/Client/Renderer/Texture/BufferedImage.h
+	Src/Hooks/Minecraft/Client/Renderer/Texture/BufferedImage.cpp
+	Src/Hooks/Minecraft/Client/UI/Control/UIControl_MultiList.cpp
+	Src/Hooks/Minecraft/Client/UI/Control/UIControl_MultiList.h
+	Src/Hooks/Minecraft/Client/UI/Control/UIControl_List.h
+	Src/Hooks/Minecraft/Client/UI/Control/UIControl_List.cpp
+	Src/Hooks/Minecraft/Client/UI/UIString.h
+	Src/Hooks/Minecraft/Client/UI/UIString.cpp
 
 	Src/Utils/HandleHelper.cpp 
 	Src/Utils/HandleHelper.h 
-	Src/Utils/Logger.cpp 
-	Src/Utils/Logger.h 
+	 
+	Src/Utils/LanternLoggerExtension.h
 	Src/Utils/TextureHelper.cpp 
 	Src/Utils/TextureHelper.h 
 	 
 	Src/Utils/MemoryHandler.h
-	"Src/Config/Options.cpp"
-	"Src/Config/Options.h"
-    Src/Hooks/LevelHooks.cpp 
-	Src/Hooks/LevelHooks.h )
+	Src/Config/Options.cpp
+	Src/Config/Options.h
+  )
 
 # Safetyhook
 FetchContent_Declare(
@@ -46,6 +64,12 @@ safetyhook
 
 FetchContent_MakeAvailable(safetyhook)
 
-add_library(Manganese SHARED ${SRC_FILES})
+add_subdirectory(Lib/Lantern)
+include_directories(Lib/Lantern/lantern Lib/Lantern/lantern/lib/detours)
+link_directories(${CMAKE_BINARY_DIR}/Lib/Lantern/Lantern ${CMAKE_BINARY_DIR}/Lib/Lantern/Lantern/lib/detours)
 
+include_directories(Src)
+
+add_library(Manganese SHARED ${SRC_FILES})
+target_link_libraries(Manganese PRIVATE lib_detours ${CMAKE_BINARY_DIR}/Lib/Lantern/Lantern.lib)
 target_link_libraries(Manganese PUBLIC safetyhook)

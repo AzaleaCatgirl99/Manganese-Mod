@@ -1,101 +1,213 @@
 #include "Options.h"
+#include "Util/Logger.h"
 
+// Default values for all options
+int graphicsPreset = 3;
 int renderDistance = 18;
 int leavesType = 1;
 int mipmapType = 1;
 int fogMode = 1;
+bool smoothLighting = true;
 
+// Gets the graphics preset value
+int GraphicsPreset::get()
+{
+	return graphicsPreset;
+}
+
+// Sets the graphics preset value
+void GraphicsPreset::set(int value)
+{
+	graphicsPreset = value;
+}
+
+// Gets the render distance value
 int RenderDistance::get()
 {
 	return renderDistance;
 }
 
+// Sets the render distance value
 void RenderDistance::set(int value)
 {
 	renderDistance = value;
 }
 
-const std::wstring RenderDistance::getLabel()
-{
-	if (RenderDistance::get() > 18) {
-		return std::format(L"Render Distance: {} Chunks [WILL CRASH]", RenderDistance::get());
-	}
-	return std::format(L"Render Distance: {} Chunks", RenderDistance::get());
-}
-
-const std::string RenderDistance::getLogLabel()
-{
-	if (RenderDistance::get() > 18) {
-		return std::format("Set Render Distance to: {} Chunks [WILL CRASH]", RenderDistance::get());
-	}
-	return std::format("Render Distance: {} Chunks", RenderDistance::get());
-}
-
-
-
-
+// Gets the leaves type value
 int LeavesType::get()
 {
 	return leavesType;
 }
 
+// Sets the leaves type value
 void LeavesType::set(int value)
 {
 	leavesType = value;
 }
 
-const std::wstring LeavesType::getLabel()
-{
-	return std::format(L"Leaves Type: {}", LeavesType::get() == 0 ? L"Fast" : LeavesType::get() == 2 ? L"Fabulous" : L"Fancy");
-}
-
-const std::string LeavesType::getLogLabel()
-{
-	return std::format("Set Leaves Type to: {}", LeavesType::get() == 0 ? "Fast" : LeavesType::get() == 2 ? "Fabulous" : "Fancy");
-}
-
-
-
-
+// Gets the mipmap type value
 int MipmapType::get()
 {
 	return mipmapType;
 }
 
+// Sets the mipmap type value
 void MipmapType::set(int value)
 {
 	mipmapType = value;
 }
 
-const std::wstring MipmapType::getLabel()
-{
-	return std::format(L"Mipmap Type: {}", MipmapType::get() == 0 ? L"OFF" : MipmapType::get() == 2 ? L"Java" : L"LCE");
-}
-
-const std::string MipmapType::getLogLabel()
-{
-	return std::format("Set Mipmap Type to: {}", MipmapType::get() == 0 ? "OFF" : MipmapType::get() == 2 ? "Java" : "LCE");
-}
-
-
-
-
+// Gets the fog mode value
 int FogMode::get()
 {
 	return fogMode;
 }
 
+// Sets the fog mode value
 void FogMode::set(int value)
 {
 	fogMode = value;
 }
 
-const std::wstring FogMode::getLabel()
+// Gets the smooth lighting value
+bool SmoothLighting::get()
 {
-	return std::format(L"Fog Mode: {}", FogMode::get() == 0 ? L"OFF" : FogMode::get() == 2 ? L"Java" : L"LCE");
+	return smoothLighting;
 }
 
-const std::string FogMode::getLogLabel()
+// Sets the smooth lighting value
+void SmoothLighting::set(bool value)
 {
-	return std::format("Fog Mode: {}", FogMode::get() == 0 ? "OFF" : FogMode::get() == 2 ? "Java" : "LCE");
+	smoothLighting = value;
+}
+
+std::wstring getGraphicsPresetLabel()
+{
+	switch (GraphicsPreset::get()) {
+	case 0: 
+		return L"Potato";
+	case 1:
+		return L"Low";
+	case 2:
+		return L"Medium";
+	case 3:
+		return L"High";
+	case 4:
+		return L"Very High [WILL CRASH]";
+	case 5:
+		return L"EXTREME [WILL CRASH]";
+	case 6:
+		return L"Custom";
+	default:
+		return L"NULL";
+	}
+}
+
+/*
+* Gets the option's label. Checks whether isLog is true and then if so, returns the log format instead
+*/
+const std::wstring getLabel(Option option, bool isLog)
+{
+	std::wstring optionName;
+	std::wstring currentValue;
+
+	switch (option) {
+	case GRAPHICS_PRESET:
+		optionName = L"Graphics Preset";
+		currentValue = getGraphicsPresetLabel();
+		break;
+	case RENDER_DISTANCE:
+		optionName = L"Render Distance";
+		currentValue = std::format(L"{} {}", RenderDistance::get(), RenderDistance::get() > 18 ? L"Chunks [WILL CRASH]" : L"Chunks");
+		break;
+	case LEAVES_TYPE:
+		optionName = L"Leaves Type";
+		currentValue = LeavesType::get() == 0 ? L"Fast" : LeavesType::get() == 2 ? L"Fabulous" : L"Fancy";
+		break;
+	case MIPMAP_TYPE:
+		optionName = L"Mipmap Type";
+		currentValue = MipmapType::get() == 0 ? L"OFF" : MipmapType::get() == 2 ? L"Java" : L"LCE";
+		break;
+	case FOG_MODE:
+		optionName = L"Fog Mode";
+		currentValue = FogMode::get() == 0 ? L"OFF" : FogMode::get() == 2 ? L"Java" : L"LCE";
+		break;
+	case SMOOTH_LIGHTING:
+		optionName = L"Smooth Lighting";
+		currentValue = SmoothLighting::get();
+		if (isLog == false) return optionName;
+		break;
+	default:
+		optionName = L"NULL SETTING";
+		currentValue = L"NULL VALUE";
+		break;
+	};
+
+	if (isLog == true) {
+		optionName = L"Set " + optionName + L" to";
+	}
+
+	return std::format(L"{}: {}", optionName, currentValue);
+}
+
+void setGraphicsPreset(Option option, char oldValue, char value)
+{
+	if (option == GRAPHICS_PRESET && oldValue != value) {
+		switch (value) {
+		case 0:
+			RenderDistance::set(4);
+			LeavesType::set(0);
+			FogMode::set(0);
+			SmoothLighting::set(false);
+
+			GraphicsPreset::set(0);
+			break;
+		case 1:
+			RenderDistance::set(7);
+			LeavesType::set(1);
+			FogMode::set(1);
+			SmoothLighting::set(false);
+
+			GraphicsPreset::set(1);
+			break;
+		case 2:
+			RenderDistance::set(10);
+			LeavesType::set(1);
+			FogMode::set(1);
+			SmoothLighting::set(true);
+
+			GraphicsPreset::set(2);
+			break;
+		case 3:
+			RenderDistance::set(18);
+			LeavesType::set(1);
+			FogMode::set(1);
+			SmoothLighting::set(true);
+
+			GraphicsPreset::set(3);
+			break;
+		case 4:
+			RenderDistance::set(24);
+			LeavesType::set(2);
+			FogMode::set(2);
+			SmoothLighting::set(true);
+
+			GraphicsPreset::set(4);
+			break;
+		case 5:
+			RenderDistance::set(32);
+			LeavesType::set(2);
+			FogMode::set(2);
+			SmoothLighting::set(true);
+
+			GraphicsPreset::set(5);
+			break;
+		default:
+			break;
+		}
+	}
+
+	if (option != GRAPHICS_PRESET && oldValue != value) {
+		GraphicsPreset::set(6);
+	}
 }

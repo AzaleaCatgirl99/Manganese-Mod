@@ -1,12 +1,10 @@
 #pragma once
-#include "DefaultHooks.h"
+#include "Hooks/HookIncludes.h"
 
-class Level
+class LevelRenderer
 {
 public:
 	static void RegisterHooks();
 
 	static void ResetHooks();
 };
-
-void* getLevelInstance();

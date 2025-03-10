@@ -1,0 +1,14 @@
+#pragma once
+#include "Hooks/HookIncludes.h"
+
+class UIScene_SettingsListMenu
+{
+public:
+	// Hook functions
+	static void Init(UIScene_SettingsListMenu* _this);
+	static void HandleSliderElementMove(UIScene_SettingsListMenu* _this, int a, int id, int value);
+};
+
+// Original functions
+CREATE_FUNC(UIScene_SettingsListMenu_Init, 0x140796B00, void, UIScene_SettingsListMenu* _this);
+CREATE_FUNC(UIScene_SettingsListMenu_HandleSliderElementMove, 0x1407F6AA0, void, UIScene_SettingsListMenu* _this, int a, int id, int value);
