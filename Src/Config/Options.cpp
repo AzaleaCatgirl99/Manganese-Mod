@@ -126,14 +126,14 @@ const std::wstring getLabel(Option option, bool isLog)
 		break;
 	case MIPMAP_TYPE:
 		optionName = L"Mipmap Type";
-		currentValue = MipmapType::get() == 0 ? L"OFF" : MipmapType::get() == 2 ? L"Java" : L"LCE";
+		currentValue = MipmapType::get() == 0 ? L"OFF" : MipmapType::get() == 2 ? L"Java [WIP]" : L"LCE";
 		break;
 	case FOG_MODE:
 		optionName = L"Fog Mode";
-		currentValue = FogMode::get() == 0 ? L"OFF" : FogMode::get() == 2 ? L"Java" : L"LCE";
+		currentValue = FogMode::get() == 0 ? L"OFF" : FogMode::get() == 2 ? L"Java [WIP]" : L"LCE";
 		break;
 	case SMOOTH_LIGHTING:
-		optionName = L"Smooth Lighting";
+		optionName = L"Smooth Lighting [WIP]";
 		currentValue = SmoothLighting::get();
 		if (isLog == false) return optionName;
 		break;
