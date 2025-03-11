@@ -17,7 +17,7 @@ void UIScene_SettingsListMenu::Init(UIScene_SettingsListMenu* _this)
 		UIControl_MultiList::AddNewSlider((UIControl_MultiList*)(_this + 328), getLabel(MIPMAP_TYPE, false), MIPMAP_TYPE, 0, 2, MipmapType::get(), 1, 7, 3);
 		UIControl_MultiList::AddNewSlider((UIControl_MultiList*)(_this + 328), getLabel(FOG_MODE, false), FOG_MODE, 0, 2, FogMode::get(), 1, 7, 3);
 
-		UIControl_MultiList::AddNewCheckbox((UIControl_MultiList*)(_this + 328), getLabel(SMOOTH_LIGHTING, false), SMOOTH_LIGHTING);
+		UIControl_MultiList::AddNewCheckbox((UIControl_MultiList*)(_this + 328), getLabel(SMOOTH_LIGHTING, false), SMOOTH_LIGHTING, SmoothLighting::get());
 	}
 	
 	UIScene_SettingsListMenu_Init(_this);
