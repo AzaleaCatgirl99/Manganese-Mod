@@ -5,7 +5,7 @@ void UIControl_MultiList::AddNewSlider(UIControl_MultiList* _this, const std::ws
 	UIControl_MultiList_AddNewSlider(_this, sliderName, id, minValue, maxValue, defaultValue, isEnabled, fastIncrement, fastMove);
 }
 
-void UIControl_MultiList::AddNewCheckbox(UIControl_MultiList* _this, const wchar_t* label, int id, bool defaultValue)
+void UIControl_MultiList::AddNewCheckbox(UIControl_MultiList* _this, const std::wstring& checkboxName, int id)
 {
-	UIControl_MultiList_AddNewCheckbox(_this, label, id, defaultValue);
+	UIControl_MultiList_AddNewCheckbox(_this, checkboxName, id);
 }
