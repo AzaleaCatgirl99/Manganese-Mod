@@ -150,6 +150,9 @@ const std::wstring getLabel(Option option, bool isLog)
 	return std::format(L"{}: {}", optionName, currentValue);
 }
 
+/*
+* Sets the graphics preset values based on the current changed option
+*/
 void setGraphicsPreset(Option option, char oldValue, char value)
 {
 	if (option == GRAPHICS_PRESET && oldValue != value) {
@@ -164,7 +167,7 @@ void setGraphicsPreset(Option option, char oldValue, char value)
 			break;
 		case 1:
 			RenderDistance::set(7);
-			LeavesType::set(1);
+			LeavesType::set(0);
 			FogMode::set(1);
 			SmoothLighting::set(false);
 
