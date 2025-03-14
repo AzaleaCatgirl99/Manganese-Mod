@@ -5,9 +5,9 @@ ServerLevel* ServerLevel::Constructor(ServerLevel* _this, void* minecraftServer,
 {
     int renderDistance = RenderDistance::get();
 
-    if (renderDistance >= 18)
-        renderDistance -= 2;
+    /*if (renderDistance >= 18)
+        renderDistance -= 2;*/
 
-    *(uint64_t*)(Call<uint64_t, void*>(GetProcessHandleAddress(0x1400f6490), minecraftServer) + 260) = renderDistance;
+    *(uint64_t*)(Call<uint64_t, void*>(GET_ADDRESS(0x1400f6490), minecraftServer) + 260) = renderDistance;
     return ServerLevel_Constructor(_this, minecraftServer, LevelStorage_shared_ptr, levelData, a5);
 }

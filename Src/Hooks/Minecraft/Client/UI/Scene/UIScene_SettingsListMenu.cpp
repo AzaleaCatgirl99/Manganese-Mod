@@ -3,6 +3,7 @@
 #include "Hooks/Minecraft/Client/UI/Control/UIControl_MultiList.h"
 #include "Hooks/Minecraft/Client/UI/Control/UIControl_List.h"
 #include "Hooks/Minecraft/Client/UI/UIString.h"
+#include "Hooks/Minecraft/Client/Minecraft.h"
 
 /*
 * Init hook
@@ -41,6 +42,9 @@ void UIScene_SettingsListMenu::HandleSliderElementMove(UIScene_SettingsListMenu*
 		setGraphicsPreset(GRAPHICS_PRESET, oldValue, value);
 		label = getLabel(GRAPHICS_PRESET, false);
 		M_LOGW_C(funcName.c_str(), GREEN, getLabel(GRAPHICS_PRESET, true));
+
+		if (Minecraft::GetInstance()->level != nullptr)
+			Minecraft::GetInstance()->levelRenderer->AllChanged();
 		break;
 	case RENDER_DISTANCE:
 		oldValue = RenderDistance::get();
@@ -48,6 +52,9 @@ void UIScene_SettingsListMenu::HandleSliderElementMove(UIScene_SettingsListMenu*
 		RenderDistance::set(value);
 		label = getLabel(RENDER_DISTANCE, false);
 		M_LOGW_C(funcName.c_str(), GREEN, getLabel(RENDER_DISTANCE, true));
+
+		if (Minecraft::GetInstance()->level != nullptr)
+			Minecraft::GetInstance()->levelRenderer->AllChanged();
 		break;
 	case LEAVES_TYPE:
 		oldValue = LeavesType::get();
@@ -55,6 +62,10 @@ void UIScene_SettingsListMenu::HandleSliderElementMove(UIScene_SettingsListMenu*
 		LeavesType::set(value);
 		label = getLabel(LEAVES_TYPE, false);
 		M_LOGW_C(funcName.c_str(), GREEN, getLabel(LEAVES_TYPE, true));
+
+		std::cout << Minecraft::GetInstance()->levelRenderer << std::endl;
+		if (Minecraft::GetInstance()->level != nullptr)
+			Minecraft::GetInstance()->levelRenderer->AllChanged();
 		break;
 	case MIPMAP_TYPE:
 		oldValue = MipmapType::get();
@@ -81,4 +92,25 @@ void UIScene_SettingsListMenu::HandleSliderElementMove(UIScene_SettingsListMenu*
 	UIControl_List::SetItemLabel((UIControl_List*)(_this + 328), id, newLabel, false);
 
 	UIScene_SettingsListMenu_HandleSliderElementMove(_this, a, id, value);
+}
+
+void UIScene_SettingsListMenu::HandleCheckboxElementToggled(UIScene_SettingsListMenu* _this, int param_2, int id, bool value)
+{
+	std::string funcName = "Manganese Settings";
+
+	bool oldValue;
+
+	switch (id) {
+	case SMOOTH_LIGHTING:
+		oldValue = SmoothLighting::get();
+		setGraphicsPreset(SMOOTH_LIGHTING, oldValue, value);
+		SmoothLighting::set(value);
+		M_LOGW_C(funcName.c_str(), GREEN, getLabel(SMOOTH_LIGHTING, true));
+
+		if (Minecraft::GetInstance()->level != nullptr)
+			Minecraft::GetInstance()->levelRenderer->AllChanged();
+		break;
+	}
+
+	UIScene_SettingsListMenu_HandleCheckboxElementToggled(_this, param_2, id, value);
 }

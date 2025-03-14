@@ -43,8 +43,8 @@ set(SRC_FILES
 	Src/Hooks/Minecraft/Client/UI/UIString.h
 	Src/Hooks/Minecraft/Client/UI/UIString.cpp
 
-	Src/Utils/HandleHelper.cpp 
-	Src/Utils/HandleHelper.h 
+	 
+	 
 	 
 	Src/Utils/LanternLoggerExtension.h
 	Src/Utils/TextureHelper.cpp 
@@ -53,13 +53,13 @@ set(SRC_FILES
 	Src/Utils/MemoryHandler.h
 	Src/Config/Options.cpp
 	Src/Config/Options.h
-  )
+   "Src/Utils/HookHelperExtension.h" "Src/Hooks/Minecraft/Client/Minecraft.h" "Src/Hooks/Minecraft/Client/Minecraft.cpp" "Src/Hooks/Minecraft/World/Level.h" "Src/Hooks/Minecraft/World/Level.cpp")
 
 # Safetyhook
 FetchContent_Declare(
 safetyhook
-    GIT_REPOSITORY "https://github.com/cursey/safetyhook.git"
-    GIT_TAG "origin/main"
+    GIT_REPOSITORY "https://github.com/Permdog99/safetyhook.git"
+    GIT_TAG "origin/patch-1"
 )
 
 FetchContent_MakeAvailable(safetyhook)

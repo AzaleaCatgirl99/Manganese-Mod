@@ -93,9 +93,9 @@ std::wstring getGraphicsPresetLabel()
 	case 3:
 		return L"High";
 	case 4:
-		return L"Very High [WILL CRASH]";
+		return L"Very High [MIGHT CRASH]";
 	case 5:
-		return L"EXTREME [WILL CRASH]";
+		return L"EXTREME [MIGHT CRASH]";
 	case 6:
 		return L"Custom";
 	default:
@@ -118,7 +118,7 @@ const std::wstring getLabel(Option option, bool isLog)
 		break;
 	case RENDER_DISTANCE:
 		optionName = L"Render Distance";
-		currentValue = std::format(L"{} {}", RenderDistance::get(), RenderDistance::get() > 18 ? L"Chunks [WILL CRASH]" : L"Chunks");
+		currentValue = std::format(L"{} {}", RenderDistance::get(), RenderDistance::get() > 18 ? L"Chunks [MIGHT CRASH]" : L"Chunks");
 		break;
 	case LEAVES_TYPE:
 		optionName = L"Leaves Type";
@@ -133,8 +133,8 @@ const std::wstring getLabel(Option option, bool isLog)
 		currentValue = FogMode::get() == 0 ? L"OFF" : FogMode::get() == 2 ? L"Java [WIP]" : L"LCE";
 		break;
 	case SMOOTH_LIGHTING:
-		optionName = L"Smooth Lighting [WIP]";
-		currentValue = SmoothLighting::get();
+		optionName = L"Smooth Lighting";
+		currentValue = SmoothLighting::get() == true ? L"true" : L"false";
 		if (isLog == false) return optionName;
 		break;
 	default:
