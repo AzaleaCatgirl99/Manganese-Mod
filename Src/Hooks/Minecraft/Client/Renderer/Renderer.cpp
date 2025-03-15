@@ -29,14 +29,16 @@ void Renderer::TextureSetTextureLevels(Renderer* _this, int value)
 }
 
 // C hook; TODO figure out the true name of this function
-void Renderer::C(Renderer* _this, bool value)
+void Renderer::C(Renderer* _this, int value)
 {
-    if (FogMode::get() == 0) {
+    /*if (FogMode::get() == 0) {
         Renderer_C(_this, false);
     }
     else {
         Renderer_C(_this, value);
-    }
+    }*/
+    std::cout << value << std::endl;
+    Renderer_C(_this, (RenderDistance::get()) * 16);
 }
 
 // Q hook; TODO figure out the true name of this function
@@ -48,5 +50,14 @@ void Renderer::Q(Renderer* _this, int a, bool value)
 // A hook; TODO figure out the true name of this function
 void Renderer::A(Renderer* _this, int value)
 {
-    Renderer_A(_this, (RenderDistance::get()-1)*16);
+    Renderer_A(_this, (RenderDistance::get() - 1) * 16);
+}
+
+void Renderer::S(Renderer* _this, float param_2, float param_3)
+{
+    /*std::cout << param_2 << std::endl;
+    std::cout << param_3 << std::endl;
+    float distance = (RenderDistance::get() - 1) * 16;
+    std::cout << distance << std::endl;*/
+    Renderer_S(_this, 0, 0);
 }

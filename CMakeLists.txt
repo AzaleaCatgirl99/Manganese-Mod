@@ -53,7 +53,7 @@ set(SRC_FILES
 	Src/Utils/MemoryHandler.h
 	Src/Config/Options.cpp
 	Src/Config/Options.h
-   "Src/Utils/HookHelperExtension.h" "Src/Hooks/Minecraft/Client/Minecraft.h" "Src/Hooks/Minecraft/Client/Minecraft.cpp" "Src/Hooks/Minecraft/World/Level.h" "Src/Hooks/Minecraft/World/Level.cpp")
+   "Src/Utils/HookHelperExtension.h" "Src/Hooks/Minecraft/Client/Minecraft.h" "Src/Hooks/Minecraft/Client/Minecraft.cpp" "Src/Hooks/Minecraft/World/Level.h" "Src/Hooks/Minecraft/World/Level.cpp" "Src/Hooks/Minecraft/Client/UI/FUI/Fui.h" "Src/Hooks/Minecraft/Client/UI/FUI/Fui.cpp")
 
 # Safetyhook
 FetchContent_Declare(

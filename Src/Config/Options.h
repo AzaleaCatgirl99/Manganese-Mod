@@ -46,6 +46,15 @@ public:
 	static void set(int value);
 };
 
+// Option to change the cloud height
+class CloudHeight
+{
+public:
+	static int get();
+
+	static void set(int value);
+};
+
 // Option to change smooth lighting
 class SmoothLighting
 {
@@ -63,7 +72,8 @@ enum Option : int
 	LEAVES_TYPE = 98,
 	MIPMAP_TYPE = 97,
 	FOG_MODE = 96,
-	SMOOTH_LIGHTING = 95
+	CLOUD_HEIGHT = 95,
+	SMOOTH_LIGHTING = 94
 };
 
 // Gets the option's label and checks for whether to use the log varient

@@ -7,6 +7,7 @@ int renderDistance = 18;
 int leavesType = 1;
 int mipmapType = 1;
 int fogMode = 1;
+int cloudHeight = 128;
 bool smoothLighting = true;
 
 // Gets the graphics preset value
@@ -67,6 +68,18 @@ int FogMode::get()
 void FogMode::set(int value)
 {
 	fogMode = value;
+}
+
+// Gets the cloud height value
+int CloudHeight::get()
+{
+	return cloudHeight;
+}
+
+// Sets the cloud height value
+void CloudHeight::set(int value)
+{
+	cloudHeight = value;
 }
 
 // Gets the smooth lighting value
@@ -130,7 +143,11 @@ const std::wstring getLabel(Option option, bool isLog)
 		break;
 	case FOG_MODE:
 		optionName = L"Fog Mode";
-		currentValue = FogMode::get() == 0 ? L"OFF" : FogMode::get() == 2 ? L"Java [WIP]" : L"LCE";
+		currentValue = FogMode::get() == 0 ? L"OFF" : FogMode::get() == 2 ? L"Java" : L"LCE";
+		break;
+	case CLOUD_HEIGHT:
+		optionName = L"Cloud Height";
+		currentValue = CloudHeight::get() == 108 ? L"Beta" : CloudHeight::get() == 128 ? L"LCE" : CloudHeight::get() == 192 ? L"Java" : std::to_wstring(CloudHeight::get());
 		break;
 	case SMOOTH_LIGHTING:
 		optionName = L"Smooth Lighting";

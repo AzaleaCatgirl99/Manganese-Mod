@@ -17,6 +17,7 @@ void UIScene_SettingsListMenu::Init(UIScene_SettingsListMenu* _this)
 		UIControl_MultiList::AddNewSlider((UIControl_MultiList*)(_this + 328), getLabel(LEAVES_TYPE, false), LEAVES_TYPE, 0, 2, LeavesType::get(), 1, 7, 3);
 		UIControl_MultiList::AddNewSlider((UIControl_MultiList*)(_this + 328), getLabel(MIPMAP_TYPE, false), MIPMAP_TYPE, 0, 2, MipmapType::get(), 1, 7, 3);
 		UIControl_MultiList::AddNewSlider((UIControl_MultiList*)(_this + 328), getLabel(FOG_MODE, false), FOG_MODE, 0, 2, FogMode::get(), 1, 7, 3);
+		UIControl_MultiList::AddNewSlider((UIControl_MultiList*)(_this + 328), getLabel(CLOUD_HEIGHT, false), CLOUD_HEIGHT, 108, 192, CloudHeight::get(), 1, 7, 3);
 
 		UIControl_MultiList::AddNewCheckbox((UIControl_MultiList*)(_this + 328), getLabel(SMOOTH_LIGHTING, false), SMOOTH_LIGHTING, SmoothLighting::get());
 	}
@@ -80,6 +81,11 @@ void UIScene_SettingsListMenu::HandleSliderElementMove(UIScene_SettingsListMenu*
 		FogMode::set(value);
 		label = getLabel(FOG_MODE, false);
 		M_LOGW_C(funcName.c_str(), GREEN, getLabel(FOG_MODE, true));
+		break;
+	case CLOUD_HEIGHT:
+		CloudHeight::set(value);
+		label = getLabel(CLOUD_HEIGHT, false);
+		M_LOGW_C(funcName.c_str(), GREEN, getLabel(CLOUD_HEIGHT, true));
 		break;
 	}
 

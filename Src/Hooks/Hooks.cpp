@@ -20,16 +20,22 @@ void RegisterHooks()
     registerHook(&(PVOID&)Renderer_StateSetFogEnable, &Renderer::StateSetFogEnable);
     registerHook(&(PVOID&)Renderer_StateSetLightingEnable, &Renderer::StateSetLightingEnable);
     registerHook(&(PVOID&)Renderer_TextureSetTextureLevels, &Renderer::TextureSetTextureLevels);
-    registerHook(&(PVOID&)Renderer_C, &Renderer::C);
+    /*registerHook(&(PVOID&)Renderer_C, &Renderer::C);
     registerHook(&(PVOID&)Renderer_Q, &Renderer::Q);
     registerHook(&(PVOID&)Renderer_A, &Renderer::A);
+    registerHook(&(PVOID&)Renderer_S, &Renderer::S);*/
 
     registerHook(&(PVOID&)ServerLevel_Constructor, &ServerLevel::Constructor);
+
+    registerHook(&(PVOID&)Level_GetFogDistance, &Level::GetFogDistance);
+    registerHook(&(PVOID&)Level_GetCloudHeight, &Level::GetCloudHeight);
 
     registerHook(&(PVOID&)BufferedImage_IsMipmapDisabled, &BufferedImage::IsMipmapDisabled);
 
     registerHook(&(PVOID&)Texture_CrispBlend, &Texture::CrispBlend);
     registerHook(&(PVOID&)Texture_TransferFromImage, &Texture::TransferFromImage);
+
+    /*registerHook(&(PVOID&)Fui_GetResolution, &Fui::GetResolution);*/
 
     LevelRenderer::RegisterHooks();
 

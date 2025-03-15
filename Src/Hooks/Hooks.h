@@ -8,6 +8,8 @@
 #include "Hooks/Minecraft/Client/Renderer/LevelRenderer.h"
 #include "Hooks/Minecraft/Client/UI/Scene/UIScene_SettingsListMenu.h"
 #include "Hooks/Minecraft/Server/ServerLevel.h"
+#include "Hooks/Minecraft/World/Level.h"
+#include "Hooks/Minecraft/Client/UI/FUI/Fui.h"
 
 // Registers all hooks
 void RegisterHooks();
