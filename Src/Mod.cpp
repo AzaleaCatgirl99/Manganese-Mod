@@ -52,5 +52,5 @@ std::wstring Manganese::GetID()
 // Gets the targeted Lantern version for Manganese
 uint64_t Manganese::GetTargetedLanternVersion()
 {
-	return ;
+	return Lantern::Version(L"1.1.0.0").GetPackedVersion();
 }

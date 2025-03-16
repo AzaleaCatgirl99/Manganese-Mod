@@ -24,8 +24,6 @@ FetchContent_MakeAvailable(safetyhook)
 
 add_subdirectory(Lib/Lantern)
 include_directories(Lib/Lantern/lantern)
-
-
 include_directories(Src)
 
 add_library(Manganese SHARED ${SRC_FILES})
