@@ -29,5 +29,6 @@ link_directories(${CMAKE_BINARY_DIR}/Lib/Lantern/Lantern ${CMAKE_BINARY_DIR}/Lib
 include_directories(Src)
 
 add_library(Manganese SHARED ${SRC_FILES})
-target_link_libraries(Manganese PRIVATE lib_detours ${CMAKE_BINARY_DIR}/Lib/Lantern/Lantern.lib)
+target_link_libraries(Manganese PRIVATE Lantern ${CMAKE_BINARY_DIR}/Lib/Lantern/Lantern.lib)
+target_link_libraries(Manganese PRIVATE lib_detours ${CMAKE_BINARY_DIR}/Lib/Lantern/lib/detours/lib_detours.lib)
 target_link_libraries(Manganese PUBLIC safetyhook)

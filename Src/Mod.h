@@ -1,6 +1,7 @@
 #pragma once
 #include <LanternMod.h>
 
+
 class Manganese : public LanternMod
 {
 public:
@@ -15,4 +16,16 @@ public:
 
 	// Gets the name of the mod
 	std::wstring GetName() override;
+
+	// Gets the description of the mod
+	std::wstring GetDescription();
+
+	// Gets the author of the mod
+	std::wstring GetAuthorName();
+
+	// Gets the id of the mod
+	std::wstring GetID();
+
+	// Gets the targeted Lantern version of the mod
+	uint64_t GetTargetedLanternVersion();
 };

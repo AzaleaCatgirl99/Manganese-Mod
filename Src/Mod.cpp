@@ -30,3 +30,23 @@ std::wstring Manganese::GetName()
 {
 	return L"Manganese";
 }
+
+std::wstring GetDescription()
+{
+	return L"Sodium-like mod for Minecraft: Xbox One Edition";
+}
+
+std::wstring GetAuthorName()
+{
+	return L"AzaleaCatgirl99";
+}
+
+std::wstring GetID()
+{
+	return L"manganese";
+}
+
+uint64_t GetTargetedLanternVersion()
+{
+	return 1;
+}
