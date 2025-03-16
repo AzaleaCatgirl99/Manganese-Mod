@@ -31,22 +31,26 @@ std::wstring Manganese::GetName()
 	return L"Manganese";
 }
 
-std::wstring GetDescription()
+// Gets the mod description for Manganese
+std::wstring Manganese::GetDescription()
 {
 	return L"Sodium-like mod for Minecraft: Xbox One Edition";
 }
 
-std::wstring GetAuthorName()
+// Gets the author name for Manganese
+std::wstring Manganese::GetAuthorName()
 {
 	return L"AzaleaCatgirl99";
 }
 
-std::wstring GetID()
+// Gets the mod id for Manganese
+std::wstring Manganese::GetID()
 {
 	return L"manganese";
 }
 
-uint64_t GetTargetedLanternVersion()
+// Gets the targeted Lantern version for Manganese
+uint64_t Manganese::GetTargetedLanternVersion()
 {
-	return 1;
+	return ;
 }

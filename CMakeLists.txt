@@ -23,8 +23,8 @@ safetyhook
 FetchContent_MakeAvailable(safetyhook)
 
 add_subdirectory(Lib/Lantern)
-include_directories(Lib/Lantern/lantern Lib/Lantern/lantern/lib/detours)
-link_directories(${CMAKE_BINARY_DIR}/Lib/Lantern/Lantern ${CMAKE_BINARY_DIR}/Lib/Lantern/Lantern/lib/detours)
+include_directories(Lib/Lantern/lantern)
+
 
 include_directories(Src)
 
