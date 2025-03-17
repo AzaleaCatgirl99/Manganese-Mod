@@ -16,8 +16,8 @@ set(SRC_FILES
 # Safetyhook
 FetchContent_Declare(
 safetyhook
-    GIT_REPOSITORY "https://github.com/Permdog99/safetyhook.git"
-    GIT_TAG "origin/patch-1"
+    GIT_REPOSITORY "https://github.com/cursey/safetyhook.git"
+    GIT_TAG "origin/main"
 )
 
 FetchContent_MakeAvailable(safetyhook)
