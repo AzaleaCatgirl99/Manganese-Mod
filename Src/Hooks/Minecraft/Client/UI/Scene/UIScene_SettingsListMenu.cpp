@@ -4,6 +4,8 @@
 #include "Hooks/Minecraft/Client/UI/Control/UIControl_List.h"
 #include "Hooks/Minecraft/Client/UI/UIString.h"
 #include "Hooks/Minecraft/Client/Minecraft.h"
+#include "Helper/UIHelper.h"
+#include "Helper/LevelHelper.h"
 
 /*
 * Init hook
@@ -12,14 +14,21 @@
 void UIScene_SettingsListMenu::Init(UIScene_SettingsListMenu* _this)
 {
 	if (*(int*)(_this + 1816) == 2) {
-		UIControl_MultiList::AddNewSlider((UIControl_MultiList*)(_this + 328), getLabel(GRAPHICS_PRESET, false), GRAPHICS_PRESET, 0, 6, GraphicsPreset::get(), 1, 7, 3);
-		UIControl_MultiList::AddNewSlider((UIControl_MultiList*)(_this + 328), getLabel(RENDER_DISTANCE, false), RENDER_DISTANCE, 2, 32, RenderDistance::get(), 1, 7, 3);
-		UIControl_MultiList::AddNewSlider((UIControl_MultiList*)(_this + 328), getLabel(LEAVES_TYPE, false), LEAVES_TYPE, 0, 2, LeavesType::get(), 1, 7, 3);
-		UIControl_MultiList::AddNewSlider((UIControl_MultiList*)(_this + 328), getLabel(MIPMAP_TYPE, false), MIPMAP_TYPE, 0, 2, MipmapType::get(), 1, 7, 3);
-		UIControl_MultiList::AddNewSlider((UIControl_MultiList*)(_this + 328), getLabel(FOG_MODE, false), FOG_MODE, 0, 2, FogMode::get(), 1, 7, 3);
-		UIControl_MultiList::AddNewSlider((UIControl_MultiList*)(_this + 328), getLabel(CLOUD_HEIGHT, false), CLOUD_HEIGHT, 108, 192, CloudHeight::get(), 1, 7, 3);
+		UIHelper::addNewLabel(_this + 328, L"=============== Manganese ==============", 101);
 
-		UIControl_MultiList::AddNewCheckbox((UIControl_MultiList*)(_this + 328), getLabel(SMOOTH_LIGHTING, false), SMOOTH_LIGHTING, SmoothLighting::get());
+		UIHelper::addNewSlider(_this + 328, getLabel(GRAPHICS_PRESET, false), GRAPHICS_PRESET, 0, 6, GraphicsPreset::get(), true);
+		UIHelper::addNewSlider(_this + 328, getLabel(RENDER_DISTANCE, false), RENDER_DISTANCE, 2, 32, RenderDistance::get(), true);
+		UIHelper::addNewSlider(_this + 328, getLabel(LEAVES_TYPE, false), LEAVES_TYPE, 0, 2, LeavesType::get(), true);
+		UIHelper::addNewSlider(_this + 328, getLabel(MIPMAP_TYPE, false), MIPMAP_TYPE, 0, 2, MipmapType::get(), true);
+		UIHelper::addNewSlider(_this + 328, getLabel(FOG_SHAPE, false), FOG_SHAPE, 0, 2, FogShape::get(), true);
+		UIHelper::addNewSlider(_this + 328, getLabel(FOG_START, false), FOG_START, 0, 100, FogStart::get(), true);
+		UIHelper::addNewSlider(_this + 328, getLabel(FOG_END, false), FOG_END, 0, 32, FogEnd::get(), true);
+		UIHelper::addNewSlider(_this + 328, getLabel(CLOUD_HEIGHT, false), CLOUD_HEIGHT, 108, 192, CloudHeight::get(), true);
+
+		UIHelper::addNewCheckbox(_this + 328, getLabel(SMOOTH_LIGHTING, false), SMOOTH_LIGHTING, SmoothLighting::get());
+		UIHelper::addNewCheckbox(_this + 328, getLabel(SKY_FOG, false), SKY_FOG, SkyFog::get());
+
+		UIHelper::addNewLabel(_this + 328, L"=============== Minecraft ===============", 90);
 	}
 	
 	UIScene_SettingsListMenu_Init(_this);
@@ -33,88 +42,57 @@ void UIScene_SettingsListMenu::Init(UIScene_SettingsListMenu* _this)
 void UIScene_SettingsListMenu::HandleSliderElementMove(UIScene_SettingsListMenu* _this, int a, int id, int value)
 {
 	std::wstring label;
-	std::string funcName = "Manganese Settings";
 
-	int oldValue;
-
-	switch (id) {
+	switch (id)
+	{
 	case GRAPHICS_PRESET:
-		oldValue = GraphicsPreset::get();
-		setGraphicsPreset(GRAPHICS_PRESET, oldValue, value);
+		UIHelper::handleOptionChange(GRAPHICS_PRESET, GraphicsPreset::get(), value, true, LevelHelper::reloadChunks);
 		label = getLabel(GRAPHICS_PRESET, false);
-		M_LOGW_C(funcName.c_str(), GREEN, getLabel(GRAPHICS_PRESET, true));
-
-		if (Minecraft::GetInstance()->level != nullptr)
-			Minecraft::GetInstance()->levelRenderer->AllChanged();
 		break;
 	case RENDER_DISTANCE:
-		oldValue = RenderDistance::get();
-		setGraphicsPreset(RENDER_DISTANCE, oldValue, value);
-		RenderDistance::set(value);
+		UIHelper::handleOptionChange(RENDER_DISTANCE, RenderDistance::get(), value, true, LevelHelper::reloadChunks);
 		label = getLabel(RENDER_DISTANCE, false);
-		M_LOGW_C(funcName.c_str(), GREEN, getLabel(RENDER_DISTANCE, true));
-
-		if (Minecraft::GetInstance()->level != nullptr)
-			Minecraft::GetInstance()->levelRenderer->AllChanged();
 		break;
 	case LEAVES_TYPE:
-		oldValue = LeavesType::get();
-		setGraphicsPreset(LEAVES_TYPE, oldValue, value);
-		LeavesType::set(value);
+		UIHelper::handleOptionChange(LEAVES_TYPE, LeavesType::get(), value, true, LevelHelper::reloadChunks);
 		label = getLabel(LEAVES_TYPE, false);
-		M_LOGW_C(funcName.c_str(), GREEN, getLabel(LEAVES_TYPE, true));
-
-		std::cout << Minecraft::GetInstance()->levelRenderer << std::endl;
-		if (Minecraft::GetInstance()->level != nullptr)
-			Minecraft::GetInstance()->levelRenderer->AllChanged();
 		break;
 	case MIPMAP_TYPE:
-		oldValue = MipmapType::get();
-		setGraphicsPreset(MIPMAP_TYPE, oldValue, value);
-		MipmapType::set(value);
+		UIHelper::handleOptionChange(MIPMAP_TYPE, MipmapType::get(), value, false, nullptr);
 		label = getLabel(MIPMAP_TYPE, false);
-		M_LOGW_C(funcName.c_str(), GREEN, getLabel(MIPMAP_TYPE, true));
 		break;
-	case FOG_MODE:
-		oldValue = FogMode::get();
-		setGraphicsPreset(FOG_MODE, oldValue, value);
-		FogMode::set(value);
-		label = getLabel(FOG_MODE, false);
-		M_LOGW_C(funcName.c_str(), GREEN, getLabel(FOG_MODE, true));
+	case FOG_SHAPE:
+		UIHelper::handleOptionChange(FOG_SHAPE, FogShape::get(), value, false, nullptr);
+		label = getLabel(FOG_SHAPE, false);
+		break;
+	case FOG_START:
+		UIHelper::handleOptionChange(FOG_START, FogStart::get(), value, false, nullptr);
+		label = getLabel(FOG_START, false);
+		break;
+	case FOG_END:
+		UIHelper::handleOptionChange(FOG_END, FogEnd::get(), value, false, nullptr);
+		label = getLabel(FOG_END, false);
 		break;
 	case CLOUD_HEIGHT:
-		CloudHeight::set(value);
+		UIHelper::handleOptionChange(CLOUD_HEIGHT, CloudHeight::get(), value, false, nullptr);
 		label = getLabel(CLOUD_HEIGHT, false);
-		M_LOGW_C(funcName.c_str(), GREEN, getLabel(CLOUD_HEIGHT, true));
 		break;
 	}
 
-	wchar_t awStack_208[256];
-	uintptr_t auStack_218[16];
-
-	swprintf_s(awStack_208, 256, label.c_str());
-
-	UIString* newLabel = UIString::_UIString(auStack_218, awStack_208);
-	UIControl_List::SetItemLabel((UIControl_List*)(_this + 328), id, newLabel, false);
+	UIHelper::setUIStringLabel((UIControl_List*)(_this + 328), id, label);
 
 	UIScene_SettingsListMenu_HandleSliderElementMove(_this, a, id, value);
 }
 
 void UIScene_SettingsListMenu::HandleCheckboxElementToggled(UIScene_SettingsListMenu* _this, int param_2, int id, bool value)
 {
-	std::string funcName = "Manganese Settings";
-
-	bool oldValue;
-
-	switch (id) {
+	switch (id)
+	{
 	case SMOOTH_LIGHTING:
-		oldValue = SmoothLighting::get();
-		setGraphicsPreset(SMOOTH_LIGHTING, oldValue, value);
-		SmoothLighting::set(value);
-		M_LOGW_C(funcName.c_str(), GREEN, getLabel(SMOOTH_LIGHTING, true));
-
-		if (Minecraft::GetInstance()->level != nullptr)
-			Minecraft::GetInstance()->levelRenderer->AllChanged();
+		UIHelper::handleOptionChange(SMOOTH_LIGHTING, SmoothLighting::get(), value, true, LevelHelper::reloadChunks);
+		break;
+	case SKY_FOG:
+		UIHelper::handleOptionChange(SKY_FOG, SkyFog::get(), value, false, nullptr);
 		break;
 	}
 

@@ -20,6 +20,7 @@ void RegisterHooks()
     registerHook(&(PVOID&)Renderer_StateSetFogEnable, &Renderer::StateSetFogEnable);
     registerHook(&(PVOID&)Renderer_StateSetLightingEnable, &Renderer::StateSetLightingEnable);
     registerHook(&(PVOID&)Renderer_TextureSetTextureLevels, &Renderer::TextureSetTextureLevels);
+    registerHook(&(PVOID&)Renderer_UpdateFogState, &Renderer::updateFogState);
     /*registerHook(&(PVOID&)Renderer_C, &Renderer::C);
     registerHook(&(PVOID&)Renderer_Q, &Renderer::Q);
     registerHook(&(PVOID&)Renderer_A, &Renderer::A);
@@ -43,6 +44,7 @@ void RegisterHooks()
     registerHook(&(PVOID&)UIScene_SettingsListMenu_HandleSliderElementMove, &UIScene_SettingsListMenu::HandleSliderElementMove);
     registerHook(&(PVOID&)UIScene_SettingsListMenu_HandleCheckboxElementToggled, &UIScene_SettingsListMenu::HandleCheckboxElementToggled);
     
+    /*registerHook(&(PVOID&)GameRenderer_SetupFog, &GameRenderer::SetupFog);*/
 }
 
 /*

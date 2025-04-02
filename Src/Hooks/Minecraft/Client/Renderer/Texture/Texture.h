@@ -1,6 +1,6 @@
 #pragma once
 #include "Hooks/HookIncludes.h"
-#include "Utils/TextureHelper.h"
+#include "Helper/TextureHelper.h"
 #include "BufferedImage.h"
 
 class Texture

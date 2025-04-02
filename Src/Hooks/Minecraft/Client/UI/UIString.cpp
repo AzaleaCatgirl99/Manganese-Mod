@@ -1,6 +1,11 @@
 #include "UIString.h"
 
-UIString* UIString::_UIString(uintptr_t* unknownOne, wchar_t* unknownTwo)
+UIString::UIString()
 {
-	return UIString_UIString(unknownOne, unknownTwo);
+	UIString_Constructor_A(this);
+}
+
+UIString::UIString(wchar_t* string)
+{
+	UIString_Constructor_B(this, string);
 }

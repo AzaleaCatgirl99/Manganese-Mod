@@ -6,9 +6,12 @@ int graphicsPreset = 3;
 int renderDistance = 18;
 int leavesType = 1;
 int mipmapType = 1;
-int fogMode = 1;
+int fogShape = 0;
+int fogStart = 75;
+int fogEnd = 16;
 int cloudHeight = 128;
 bool smoothLighting = true;
+bool skyFog = true;
 
 // Gets the graphics preset value
 int GraphicsPreset::get()
@@ -58,16 +61,40 @@ void MipmapType::set(int value)
 	mipmapType = value;
 }
 
-// Gets the fog mode value
-int FogMode::get()
+// Gets the fog shape value
+int FogShape::get()
 {
-	return fogMode;
+	return fogShape;
 }
 
-// Sets the fog mode value
-void FogMode::set(int value)
+// Sets the fog shape value
+void FogShape::set(int value)
 {
-	fogMode = value;
+	fogShape = value;
+}
+
+// Gets the fog start value
+int FogStart::get()
+{
+	return fogStart;
+}
+
+// Sets the fog start value
+void FogStart::set(int value)
+{
+	fogStart = value;
+}
+
+// Gets the fog end value
+int FogEnd::get()
+{
+	return fogEnd;
+}
+
+// Sets the fog end value
+void FogEnd::set(int value)
+{
+	fogEnd = value;
 }
 
 // Gets the cloud height value
@@ -92,6 +119,18 @@ bool SmoothLighting::get()
 void SmoothLighting::set(bool value)
 {
 	smoothLighting = value;
+}
+
+// Gets the sky fog value
+bool SkyFog::get()
+{
+	return skyFog;
+}
+
+// Sets the sky fog value
+void SkyFog::set(bool value)
+{
+	skyFog = value;
 }
 
 std::wstring getGraphicsPresetLabel()
@@ -131,7 +170,7 @@ const std::wstring getLabel(Option option, bool isLog)
 		break;
 	case RENDER_DISTANCE:
 		optionName = L"Render Distance";
-		currentValue = std::format(L"{} {}", RenderDistance::get(), RenderDistance::get() > 18 ? L"Chunks [MIGHT CRASH]" : L"Chunks");
+		currentValue = std::format(L"{} Chunks{}", RenderDistance::get(), RenderDistance::get() > 18 ? L" [MIGHT CRASH]" : L"");
 		break;
 	case LEAVES_TYPE:
 		optionName = L"Leaves Type";
@@ -141,9 +180,17 @@ const std::wstring getLabel(Option option, bool isLog)
 		optionName = L"Mipmap Type";
 		currentValue = MipmapType::get() == 0 ? L"OFF" : MipmapType::get() == 2 ? L"Java [WIP]" : L"LCE";
 		break;
-	case FOG_MODE:
-		optionName = L"Fog Mode";
-		currentValue = FogMode::get() == 0 ? L"OFF" : FogMode::get() == 2 ? L"Java" : L"LCE";
+	case FOG_SHAPE:
+		optionName = L"Fog Shape";
+		currentValue = FogShape::get() == 1 ? L"Cylindrical [WIP]" : FogShape::get() == 2 ? L"Spherical [WIP]" : L"Planar";
+		break;
+	case FOG_START:
+		optionName = L"Fog Start";
+		currentValue = std::format(L"{}", (double)(FogStart::get())/100.0);
+		break;
+	case FOG_END:
+		optionName = L"Fog End";
+		currentValue = FogEnd::get() == 0 ? L"Auto" : std::format(L"{} Chunks", FogEnd::get());
 		break;
 	case CLOUD_HEIGHT:
 		optionName = L"Cloud Height";
@@ -152,6 +199,11 @@ const std::wstring getLabel(Option option, bool isLog)
 	case SMOOTH_LIGHTING:
 		optionName = L"Smooth Lighting";
 		currentValue = SmoothLighting::get() == true ? L"true" : L"false";
+		if (isLog == false) return optionName;
+		break;
+	case SKY_FOG:
+		optionName = L"Sky Fog";
+		currentValue = SkyFog::get() == true ? L"true" : L"false";
 		if (isLog == false) return optionName;
 		break;
 	default:
@@ -177,48 +229,48 @@ void setGraphicsPreset(Option option, char oldValue, char value)
 		case 0:
 			RenderDistance::set(4);
 			LeavesType::set(0);
-			FogMode::set(0);
 			SmoothLighting::set(false);
+			SkyFog::set(false);
 
 			GraphicsPreset::set(0);
 			break;
 		case 1:
 			RenderDistance::set(7);
 			LeavesType::set(0);
-			FogMode::set(1);
 			SmoothLighting::set(false);
+			SkyFog::set(true);
 
 			GraphicsPreset::set(1);
 			break;
 		case 2:
 			RenderDistance::set(10);
 			LeavesType::set(1);
-			FogMode::set(1);
 			SmoothLighting::set(true);
+			SkyFog::set(true);
 
 			GraphicsPreset::set(2);
 			break;
 		case 3:
 			RenderDistance::set(18);
 			LeavesType::set(1);
-			FogMode::set(1);
 			SmoothLighting::set(true);
+			SkyFog::set(true);
 
 			GraphicsPreset::set(3);
 			break;
 		case 4:
 			RenderDistance::set(24);
 			LeavesType::set(2);
-			FogMode::set(2);
 			SmoothLighting::set(true);
+			SkyFog::set(true);
 
 			GraphicsPreset::set(4);
 			break;
 		case 5:
 			RenderDistance::set(32);
 			LeavesType::set(2);
-			FogMode::set(2);
 			SmoothLighting::set(true);
+			SkyFog::set(true);
 
 			GraphicsPreset::set(5);
 			break;
@@ -229,5 +281,43 @@ void setGraphicsPreset(Option option, char oldValue, char value)
 
 	if (option != GRAPHICS_PRESET && oldValue != value) {
 		GraphicsPreset::set(6);
+	}
+}
+
+void setOptionValue(Option option, int value)
+{
+	switch (option)
+	{
+	case GRAPHICS_PRESET:
+		break;
+	case RENDER_DISTANCE:
+		RenderDistance::set(value);
+		break;
+	case LEAVES_TYPE:
+		LeavesType::set(value);
+		break;
+	case MIPMAP_TYPE:
+		MipmapType::set(value);
+		break;
+	case FOG_SHAPE:
+		FogShape::set(value);
+		break;
+	case FOG_START:
+		FogStart::set(value);
+		break;
+	case FOG_END:
+		FogEnd::set(value);
+		break;
+	case CLOUD_HEIGHT:
+		CloudHeight::set(value);
+		break;
+	case SMOOTH_LIGHTING:
+		SmoothLighting::set(value);
+		break;
+	case SKY_FOG:
+		SkyFog::set(value);
+		break;
+	default:
+		break;
 	}
 }

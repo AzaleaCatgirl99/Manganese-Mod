@@ -5,7 +5,7 @@
 int Texture::CrispBlend(int one, int two)
 {
     if (MipmapType::get() == 2) {
-        return JavaBlend(JavaBlend(one, two), JavaBlend(one, two));
+        return TextureHelper::JavaBlend(TextureHelper::JavaBlend(one, two), TextureHelper::JavaBlend(one, two));
     }
     else {
         return Texture_CrispBlend(one, two);

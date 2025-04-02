@@ -10,6 +10,8 @@
 #include "Hooks/Minecraft/Server/ServerLevel.h"
 #include "Hooks/Minecraft/World/Level.h"
 #include "Hooks/Minecraft/Client/UI/FUI/Fui.h"
+#include "Hooks/Minecraft/Client/Renderer/GameRenderer.h"
+#include "Hooks/Minecraft/Client/Renderer/GlStateManager.h"
 
 // Registers all hooks
 void RegisterHooks();

@@ -37,8 +37,26 @@ public:
 	static void set(int value);
 };
 
-// Option to change the fog mode
-class FogMode
+// Option to change the fog shape
+class FogShape
+{
+public:
+	static int get();
+
+	static void set(int value);
+};
+
+// Option to change the fog start
+class FogStart
+{
+public:
+	static int get();
+
+	static void set(int value);
+};
+
+// Option to change the fog end
+class FogEnd
 {
 public:
 	static int get();
@@ -64,6 +82,14 @@ public:
 	static void set(bool value);
 };
 
+class SkyFog
+{
+public:
+	static bool get();
+
+	static void set(bool value);
+};
+
 // Enum for option ids
 enum Option : int
 {
@@ -71,9 +97,12 @@ enum Option : int
 	RENDER_DISTANCE = 99,
 	LEAVES_TYPE = 98,
 	MIPMAP_TYPE = 97,
-	FOG_MODE = 96,
-	CLOUD_HEIGHT = 95,
-	SMOOTH_LIGHTING = 94
+	FOG_SHAPE = 96,
+	FOG_START = 95,
+	FOG_END = 94,
+	CLOUD_HEIGHT = 93,
+	SMOOTH_LIGHTING = 92,
+	SKY_FOG = 91
 };
 
 // Gets the option's label and checks for whether to use the log varient
@@ -81,3 +110,5 @@ const std::wstring getLabel(Option option, bool isLog);
 
 
 void setGraphicsPreset(Option option, char oldValue, char value);
+
+void setOptionValue(Option option, int value);
