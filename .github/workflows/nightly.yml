@@ -8,10 +8,11 @@ on:
 
 env:
   BUILD_TYPE: Release
+  COMPILER: cl
 
 jobs:
   build:
-    runs-on: windows-2022
+    runs-on: windows-latest
 
     steps:
     - name: Checkout
@@ -19,17 +20,24 @@ jobs:
       with: { submodules: recursive }
 
     - name: Configure CMake
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_CXX_COMPILER=${{env.COMPILER}}
 
     - name: Build DLL
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    - name: Create Nightly
+      run: |
+          mkdir ./nightly-temp
+          move ./LICENSE.md ./nightly-temp
+          move ./README.md ${{github.workspace}}/nightly-temp
+          move ./CREDITS.md ./nightly-temp
+
+          move ./build/Release/Manganese.dll ./nightly-temp
+          move ./build/Release/Manganese.lib ./nightly-temp
+          move ./build/Release/Manganese.pdb ./nightly-temp
       
     - name: Upload Nightly
       uses: actions/upload-artifact@v4
       with:
         name: "Manganese-Nightly"
-        path: |
-          D:\a\Manganese-Mod\Manganese-Mod\build\Release\Manganese.dll
-          D:\a\Manganese-Mod\Manganese-Mod\LICENSE.md
-          D:\a\Manganese-Mod\Manganese-Mod\README.md
-          D:\a\Manganese-Mod\Manganese-Mod\CREDITS.md
+        path: nighty-temp
